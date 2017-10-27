@@ -33,11 +33,11 @@ class Produto {
         this.marca = marca;
     }
 
-    public float getPreço() {
+    public float getPreco() {
         return preco;
     }
 
-    public void setPreço(float preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 
