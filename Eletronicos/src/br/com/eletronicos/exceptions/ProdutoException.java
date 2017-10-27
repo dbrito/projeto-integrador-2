@@ -9,6 +9,6 @@ package br.com.eletronicos.exceptions;
  *
  * @author maycon.rpereira
  */
-public class exceptions {
+public class ProdutoException {
     
 }

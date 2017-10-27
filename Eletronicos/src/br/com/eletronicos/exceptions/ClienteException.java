@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.eletronicos.ui;
+package br.com.eletronicos.exceptions;
 
 /**
  *
  * @author maycon.rpereira
  */
-public class oi {
+public class ClienteException {
     
 }

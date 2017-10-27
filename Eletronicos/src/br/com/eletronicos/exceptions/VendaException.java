@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.eletronicos.service;
+package br.com.eletronicos.exceptions;
 
 /**
  *
  * @author maycon.rpereira
  */
-public class Service {
+public class VendaException {
     
 }
