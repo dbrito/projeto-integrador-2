@@ -1,11 +1,10 @@
-
 package br.com.eletronicos.model;
 
 class Produto {
     private int codigo;
     private String nome;
     private String marca;
-    private float preço;
+    private float preco;
     private int quantidade;
     private String categoria;
     private String descricao;
@@ -35,11 +34,11 @@ class Produto {
     }
 
     public float getPreço() {
-        return preço;
+        return preco;
     }
 
-    public void setPreço(float preço) {
-        this.preço = preço;
+    public void setPreço(float preco) {
+        this.preco = preco;
     }
 
     public int getQuantidade() {
