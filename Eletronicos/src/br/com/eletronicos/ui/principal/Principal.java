@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface;
+package br.com.eletronicos.ui.principal;
+
+import br.com.eletronicos.ui.clientes.CadastrarCliente;
 
 /**
  *
@@ -60,6 +62,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.setText("Cliente");
 
         jMenuItem1.setText("Cadastrar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastrarCliente(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Consultar");
@@ -114,6 +121,11 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CadastrarCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarCliente
+        new CadastrarCliente().setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CadastrarCliente
 
     /**
      * @param args the command line arguments
