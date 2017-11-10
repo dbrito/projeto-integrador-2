@@ -1,0 +1,24 @@
+CREATE TABLE cliente (
+    cliente_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    nome VARCHAR(50) NOT NULL,
+    sobrenome VARCHAR(200) NOT NULL,
+    idade INTEGER NOT NULL,
+    sexo VARCHAR(10),
+    enabled BOOLEAN
+);
+
+CREATE TABLE quarto (
+    quarto_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    numero INTEGER NOT NULL,
+    andar INTEGER NOT NULL,
+    tipo VARCHAR(50),
+    enabled BOOLEAN
+);
+
+CREATE TABLE reserva (
+    reserva_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    data_reserva TIMESTAMP NOT NULL,
+    valor_final NUMERIC NOT NULL,
+    cliente_id INTEGER NOT NULL REFERENCES cliente(cliente_id),
+    quarto_id INTEGER NOT NULL REFERENCES quarto(quarto_id)
+)
