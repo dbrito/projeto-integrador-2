@@ -14,20 +14,24 @@ public class ValidadorCliente {
             throw new ClienteException("É necessário informar "
                     + "um nome de cliente");
         }
-        if (cliente.getSobrenome() == null
-                || "".equals(cliente.getSobrenome())) {
-            throw new ClienteException("É necessário informar um "
-                    + "sobrenome de cliente");
+        if (cliente.getCpf()== null
+                || "".equals(cliente.getCpf())) {
+            throw new ClienteException("É necessário informar o "
+                    + "CPF do cliente");
         }
-        if (cliente.getDataNascimento() == null) {
+        /*if (cliente.getDataNascimento() == null) {
             throw new ClienteException("É necessário informar um "
                     + "valor de idade válido");
-        }
-        if (cliente.getGenero() == null || "".equals(cliente.getGenero())
-                || (!cliente.getGenero().equals("Masculino"))
-                && !cliente.getGenero().equals("Feminino")) {
+        }*/
+        
+        System.out.println("MUEK" + cliente.getEndereco());
+        if (cliente.getEndereco() == null || "".equals(cliente.getEndereco())
+                || cliente.getNumero() == null
+                || cliente.getCep() == null 
+                || cliente.getCidade() == null || "".equals(cliente.getCidade())
+                || cliente.getEstado() == null || "".equals(cliente.getEstado())) {
             throw new ClienteException("É necessário informar o "
-                    + "gênero do cliente");
+                    + "endereço do cliente");
         }
     }
 }

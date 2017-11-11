@@ -23,14 +23,30 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         fieldNome = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        fieldSobrenome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        comboGenero = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
         cancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
-        fFieldDataNasc = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
+        fieldCpf = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        fieldTelefone = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        fieldEndereco = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        fieldNumero = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        fieldComplemento = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        fieldBairro = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        fieldCidade = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        fieldEstado = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        fieldEmail = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        fieldCep = new javax.swing.JTextField();
+        fieldDataNascimento = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -39,14 +55,6 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
         setTitle("Cadastrar Cliente");
 
         jLabel1.setText("Nome: ");
-
-        jLabel2.setText("Sobrenome: ");
-
-        jLabel3.setText("Data Nasc:");
-
-        comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Feminino", "Masculino" }));
-
-        jLabel4.setText("Sexo: ");
 
         cancelar.setText("Fechar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,36 +70,89 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        fFieldDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        jLabel5.setText("CFP:");
+
+        jLabel6.setText("Data Nasc");
+
+        jLabel7.setText("Telefone");
+
+        jLabel2.setText("Endereço:");
+
+        jLabel9.setText("Número");
+
+        jLabel10.setText("Complemento");
+
+        jLabel3.setText("Bairro");
+
+        jLabel11.setText("Cidade");
+
+        jLabel12.setText("Estado");
+
+        jLabel4.setText("Email");
+
+        jLabel13.setText("CEP");
+
+        try {
+            fieldDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1))
+                        .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldEmail)
                             .addComponent(fieldNome)
-                            .addComponent(fieldSobrenome)
+                            .addComponent(fieldEndereco)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(fieldTelefone)
+                                .addGap(161, 161, 161))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(fFieldDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
+                                .addComponent(fieldBairro)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboGenero, 0, 151, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fieldCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fieldComplemento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fieldEstado)
+                                    .addComponent(fieldDataNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(fieldCidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12)
+                                .addGap(128, 128, 128))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(cancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoSalvar)
-                        .addGap(10, 10, 10))))
+                        .addComponent(botaoSalvar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,15 +163,41 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
                     .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(fieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(fieldDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(fieldSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(fieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(fieldComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
+                    .addComponent(fieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(fieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(fieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(fieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fFieldDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                    .addComponent(fieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoSalvar)
                     .addComponent(cancelar))
@@ -131,18 +218,23 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
         //Cria uma instância do cliente e obtém
         //seus valores dos campos da tela
         Cliente cli = new Cliente();
-        cli.setNome(fieldNome.getText());
-        cli.setSobrenome(fieldSobrenome.getText());
+        cli.setNome(fieldNome.getText());        
+        cli.setEndereco(fieldEndereco.getText());
+        cli.setComplemento(fieldComplemento.getText());
+        cli.setBairro(fieldBairro.getText());        
+        cli.setEstado(fieldEstado.getText());
+        cli.setCidade(fieldCidade.getText());        
+        cli.setEmail(fieldEmail.getText());
         
-        Date data = null;
         try {
-            data =  (Date)fFieldDataNasc.getValue();
+            cli.setCpf(Integer.parseInt(fieldCpf.getText()));
+            cli.setNumero(Integer.parseInt(fieldNumero.getText()));
+            cli.setCep(Integer.parseInt(fieldCep.getText()));
+            cli.setTelefone(Integer.parseInt(fieldTelefone.getText()));
         } catch (Exception e) {
-            
-        }
-        cli.setDataNascimento(data);
-        cli.setGenero((String) comboGenero.getSelectedItem());
-
+            System.out.print(e);
+        }        
+        
         try {
             //Chama o serviço para cadastro do cliente
             ServicoCliente.cadastrarCliente(cli);
@@ -160,23 +252,36 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
 
         //Limpa os campos da tela após realizar a inserção
         fieldNome.setText("");
-        fieldSobrenome.setText("");
-        fFieldDataNasc.setText("");
-        fFieldDataNasc.setValue(null);
-        comboGenero.setSelectedIndex(0);
+        fieldCpf.setText("");
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoSalvar;
     private javax.swing.JButton cancelar;
-    private javax.swing.JComboBox<String> comboGenero;
-    private javax.swing.JFormattedTextField fFieldDataNasc;
+    private javax.swing.JTextField fieldBairro;
+    private javax.swing.JTextField fieldCep;
+    private javax.swing.JTextField fieldCidade;
+    private javax.swing.JTextField fieldComplemento;
+    private javax.swing.JTextField fieldCpf;
+    private javax.swing.JFormattedTextField fieldDataNascimento;
+    private javax.swing.JTextField fieldEmail;
+    private javax.swing.JTextField fieldEndereco;
+    private javax.swing.JTextField fieldEstado;
     private javax.swing.JTextField fieldNome;
-    private javax.swing.JTextField fieldSobrenome;
+    private javax.swing.JTextField fieldNumero;
+    private javax.swing.JTextField fieldTelefone;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
