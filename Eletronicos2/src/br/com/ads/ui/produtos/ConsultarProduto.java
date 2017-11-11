@@ -1,4 +1,4 @@
-package br.com.ads.ui.quartos;
+package br.com.ads.ui.produtos;
 
 import br.com.ads.exceptions.QuartoException;
 import br.com.ads.model.produtos.Produto;
@@ -12,17 +12,17 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Tela de consulta de quartos
  */
-public class TelaConsultarQuartos extends javax.swing.JInternalFrame {
+public class ConsultarProduto extends javax.swing.JInternalFrame {
 
     //Instância do form de edição de quartos
-    TelaEditarQuarto formEditarQuarto = new TelaEditarQuarto();
+    EditarProduto formEditarQuarto = new EditarProduto();
     //Armazena a última pesquisa realizada
     Long ultimaPesquisa = null;
     
     /**
      * Construtor e inicialização de componentes
      */
-    public TelaConsultarQuartos() {
+    public ConsultarProduto() {
         initComponents();
     }
 
@@ -250,7 +250,7 @@ public class TelaConsultarQuartos extends javax.swing.JInternalFrame {
                 //Para exibir a tela, é necessário adicioná-la ao
                 //componente de desktop, o "pai" da janela corrente
                 formEditarQuarto.dispose();
-                formEditarQuarto = new TelaEditarQuarto();
+                formEditarQuarto = new EditarProduto();
                 formEditarQuarto.setQuarto(quarto);
                 formEditarQuarto.setTitle("Quarto " + quarto.getNumero() + ", "
                     + "Andar " + quarto.getAndar());
@@ -288,7 +288,7 @@ public class TelaConsultarQuartos extends javax.swing.JInternalFrame {
                 //Para exibir a tela, é necessário adicioná-la ao
                 //componente de desktop, o "pai" da janela corrente
                 formEditarQuarto.dispose();
-                formEditarQuarto = new TelaEditarQuarto();
+                formEditarQuarto = new EditarProduto();
                 formEditarQuarto.setQuarto(quarto);
                 formEditarQuarto.setTitle("Quarto " + quarto.getNumero() + ", "
                     + "Andar " + quarto.getAndar());

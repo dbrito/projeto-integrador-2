@@ -1,20 +1,29 @@
-package br.com.ads.ui.quartos;
+package br.com.ads.ui.produtos;
 
 import br.com.ads.model.produtos.Produto;
 import br.com.ads.service.produto.ServicoProduto;
+import br.com.ads.ui.principal.TelaPrincipal;
 import javax.swing.JOptionPane;
 
 /**
- * Tela de cadastro de quartos
+ * Tela de atualização de quartos
  */
-public class TelaCadastrarQuarto extends javax.swing.JInternalFrame {
-
+public class EditarProduto extends javax.swing.JInternalFrame {
+    private Produto quarto = new Produto();
     /**
      * Construtor e inicialização de componentes
      */
-    public TelaCadastrarQuarto() {
+    public EditarProduto() {
         initComponents();
     }
+
+    public Produto getQuarto() {
+        return quarto;
+    }
+
+    public void setQuarto(Produto quarto) {
+        this.quarto = quarto;
+    }   
 
     /**
      * Método criado pelo GUI Builder para montagem da tela
@@ -38,6 +47,23 @@ public class TelaCadastrarQuarto extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Cadastrar Quartos");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         labelNumero.setText("Número: ");
 
@@ -121,10 +147,6 @@ public class TelaCadastrarQuarto extends javax.swing.JInternalFrame {
 
     //Listener do botão salvar
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-        //Cria uma instância do quarto e obtém
-        //seus valores dos campos da tela
-        Produto qua = new Produto();
-        
         Long numero = null;
         try {
             Number number = (Number) fFieldNumero.getValue();
@@ -132,7 +154,7 @@ public class TelaCadastrarQuarto extends javax.swing.JInternalFrame {
         } catch (Exception e) {
 
         }
-        qua.setNumero(numero);
+        quarto.setNumero(numero);
         
         Long andar = null;
         try {
@@ -141,32 +163,66 @@ public class TelaCadastrarQuarto extends javax.swing.JInternalFrame {
         } catch (Exception e) {
 
         }
-        qua.setAndar(andar);
+        quarto.setAndar(andar);
         
-        qua.setTipo((String) comboTipo.getSelectedItem());
+        quarto.setTipo((String) comboTipo.getSelectedItem());
 
         try {
-            //Chama o serviço para cadastro do quarto
-            ServicoProduto.cadastrarQuarto(qua);
+            //Chama o serviço para atualização do quarto
+            ServicoProduto.atualizarQuarto(quarto);
         } catch (Exception e) {
             //Exibe mensagens de erro para o usuário
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
                     "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        
+        //Atualiza a tela de consulta de clientes, caso possível. Para isso,
+        //obtém o "top level ancestor" (ou seja, o componente pai mais acima
+        //do formulário, no nosso caso, o desktop) para conseguir o frame
+        //de consulta e daí solicitar a atualização da lista através da
+        //chamada de seu método público de atualização
+        try {
+            if (this.getDesktopPane().getTopLevelAncestor()
+                    instanceof TelaPrincipal) {
+                TelaPrincipal principal = (TelaPrincipal) this.
+                        getDesktopPane().getTopLevelAncestor();
+                if (principal != null) {
+                    principal.getConsultarQuartos().refreshList();                
+                }
+            }
+        }
+        catch(Exception e) {
+            //Exibe erros de atualização da lista no
+            //console, mas esconde-os do usuário
+            e.printStackTrace();
+        }
 
-        //Caso tenha chegado até aqui, o quarto foi inserido com sucesso
+        //Caso tenha chegado até aqui, o quarto foi atualizado com sucesso
         //Então exibe uma mensagem de sucesso para o usuário
-        JOptionPane.showMessageDialog(rootPane, "Quarto inserido com sucesso",
+        JOptionPane.showMessageDialog(rootPane, "Quarto atualizado com sucesso",
                 "Cadastro efetuado", JOptionPane.INFORMATION_MESSAGE);
 
-        //Limpa os campos da tela após realizar a inserção        
+        //Limpa os campos da tela após realizar a ataulização        
         fFieldNumero.setText("");
         fFieldNumero.setValue(null);
         fFieldAndar.setText("");
         fFieldAndar.setValue(null);
         comboTipo.setSelectedIndex(0);
+        this.dispose();
     }//GEN-LAST:event_buttonSalvarActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        fFieldNumero.setValue(quarto.getNumero());
+        fFieldAndar.setValue(quarto.getAndar());
+        for (int i = 0; i < comboTipo.getItemCount(); i++) {
+            if (comboTipo.getItemAt(i).equals(quarto.getTipo())) {
+                comboTipo.setSelectedIndex(i);
+                break;
+            }
+        }
+    }//GEN-LAST:event_formInternalFrameOpened
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonFechar;
