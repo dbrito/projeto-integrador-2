@@ -2,8 +2,8 @@ package br.com.ads.ui.principal;
 
 import br.com.ads.ui.clientes.TelaCadastrarCliente;
 import br.com.ads.ui.clientes.TelaConsultarClientes;
-import br.com.ads.ui.quartos.TelaCadastrarQuarto;
-import br.com.ads.ui.quartos.TelaConsultarQuartos;
+import br.com.ads.ui.produtos.CadastrarProduto;
+import br.com.ads.ui.produtos.ConsultarProduto;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -20,8 +20,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private TelaCadastrarCliente cadastrarCliente = null;
     private TelaConsultarClientes consultarClientes = null;
-    private TelaCadastrarQuarto cadastrarQuarto = null;
-    private TelaConsultarQuartos consultarQuartos = null;
+    private CadastrarProduto cadastrarQuarto = null;
+    private ConsultarProduto consultarQuartos = null;
 
     /**
      * Construtor e inicialização de componentes
@@ -50,19 +50,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.consultarClientes = consultarClientes;
     }
 
-    public TelaCadastrarQuarto getCadastrarQuarto() {
+    public CadastrarProduto getCadastrarQuarto() {
         return cadastrarQuarto;
     }
 
-    public void setCadastrarQuarto(TelaCadastrarQuarto cadastrarQuarto) {
+    public void setCadastrarQuarto(CadastrarProduto cadastrarQuarto) {
         this.cadastrarQuarto = cadastrarQuarto;
     }
 
-    public TelaConsultarQuartos getConsultarQuartos() {
+    public ConsultarProduto getConsultarQuartos() {
         return consultarQuartos;
     }
 
-    public void setConsultarQuartos(TelaConsultarQuartos consultarQuartos) {
+    public void setConsultarQuartos(ConsultarProduto consultarQuartos) {
         this.consultarQuartos = consultarQuartos;
     }
 
@@ -224,7 +224,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //Verifica se não há uma janela de cadastro de quartos visível.
         //Caso afirmativo, cria uma janela de cadastro de quartos e a exibe
         if (cadastrarQuarto == null || !cadastrarQuarto.isDisplayable()) {
-            cadastrarQuarto = new TelaCadastrarQuarto();
+            cadastrarQuarto = new CadastrarProduto();
             desktop.add(cadastrarQuarto);
             this.openFrameInCenter(cadastrarQuarto);
         }
@@ -236,7 +236,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //Verifica se não há uma janela de consulta de quartos visível.
         //Caso afirmativo, cria uma janela de consulta de quartos e a exibe
         if (consultarQuartos == null || !consultarQuartos.isDisplayable()) {
-            consultarQuartos = new TelaConsultarQuartos();
+            consultarQuartos = new ConsultarProduto();
             desktop.add(consultarQuartos);
             this.openFrameInCenter(consultarQuartos);
         }
