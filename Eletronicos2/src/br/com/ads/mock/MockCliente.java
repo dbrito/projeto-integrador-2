@@ -55,17 +55,15 @@ public class MockCliente {
         return listaClientes;
     }
 
-    //Procura um cliente no mock, de acordo com o nome
-    //ou com o sobrenome, passado como parâmetro
+    //Procura um cliente no mock, de acordo com o nome ou cpf
     public static List<Cliente> procurar(String valor)
             throws Exception {
         List<Cliente> listaResultado = new ArrayList<Cliente>();
         
         if (valor != null && !listaClientes.isEmpty()) {
             for (Cliente clienteLi : listaClientes) {
-                if (clienteLi != null && clienteLi.getNome() != null &&
-                    clienteLi.getNome() != null) {
-                    if ( clienteLi.getNome().toUpperCase().contains(valor.toUpperCase())) {
+                if (clienteLi != null) {
+                    if ( clienteLi.getNome().toUpperCase().contains(valor.toUpperCase()) || clienteLi.getCpf().toString().contains(valor)) {
                         listaResultado.add(clienteLi);
                     }
                 }

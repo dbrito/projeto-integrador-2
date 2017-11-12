@@ -52,14 +52,14 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Nome", "Sobrenome", "Idade", "Sexo"
+                "Id", "Nome", "CPF"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -203,7 +203,7 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
                 Object[] row = new Object[5];
                 row[0] = cli.getId();
                 row[1] = cli.getNome();
-                
+                row[2] = cli.getCpf();
                 model.addRow(row);
             }
         }

@@ -147,7 +147,7 @@ public class EditarProduto extends javax.swing.JInternalFrame {
 
     //Listener do botão salvar
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-        Long numero = null;
+        /*Long numero = null;
         try {
             Number number = (Number) fFieldNumero.getValue();
             numero = number.longValue();
@@ -210,18 +210,18 @@ public class EditarProduto extends javax.swing.JInternalFrame {
         fFieldAndar.setText("");
         fFieldAndar.setValue(null);
         comboTipo.setSelectedIndex(0);
-        this.dispose();
+        this.dispose();*/
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        fFieldNumero.setValue(quarto.getNumero());
+        /*fFieldNumero.setValue(quarto.getNumero());
         fFieldAndar.setValue(quarto.getAndar());
         for (int i = 0; i < comboTipo.getItemCount(); i++) {
             if (comboTipo.getItemAt(i).equals(quarto.getTipo())) {
                 comboTipo.setSelectedIndex(i);
                 break;
             }
-        }
+        }*/
     }//GEN-LAST:event_formInternalFrameOpened
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -8,16 +8,16 @@ public class Cliente {
     //Atributos
     private Integer id;
     private String nome;
-    private Integer cpf;
+    private String cpf;
     private Date dataNascimento;    
     private String endereco;
-    private Integer numero;
+    private String numero;
     private String complemento;
     private String bairro;
-    private Integer cep;
+    private String cep;
     private String cidade;
     private String estado;
-    private Integer telefone;
+    private String telefone;
     private String email;
 
     //Métodos de acesso
@@ -35,19 +35,19 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public Integer getCpf() {
+    public String getCpf() {
         return cpf;
     }
-    public void setCpf(Integer cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    /*public Date getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
-    }*/
+    }
 
     public String getEndereco() {
         return endereco;
@@ -56,10 +56,10 @@ public class Cliente {
         this.endereco = endereco;
     }
     
-    public Integer getNumero() {
+    public String getNumero() {
         return numero;
     }
-    public void setNumero(Integer numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
     
@@ -77,10 +77,10 @@ public class Cliente {
         this.bairro = bairro;
     }
     
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
-    public void setCep(Integer cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
     
@@ -98,10 +98,10 @@ public class Cliente {
         this.estado = estado;
     }
     
-    public Integer getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
-    public void setTelefone(Integer telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
     
