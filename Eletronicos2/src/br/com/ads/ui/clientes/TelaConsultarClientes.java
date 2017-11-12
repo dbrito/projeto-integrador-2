@@ -203,9 +203,7 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
                 Object[] row = new Object[5];
                 row[0] = cli.getId();
                 row[1] = cli.getNome();
-                row[2] = cli.getSobrenome();
-                row[3] = cli.getDataNascimento();
-                row[4] = cli.getGenero();
+                
                 model.addRow(row);
             }
         }
@@ -238,7 +236,7 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
                 formEditarCliente.dispose();
                 formEditarCliente = new TelaEditarCliente();
                 formEditarCliente.setCliente(cliente);
-                formEditarCliente.setTitle(cliente.getNome() + " " + cliente.getSobrenome());
+                formEditarCliente.setTitle(cliente.getNome());
                 this.getParent().add(formEditarCliente);
                 this.openFrameInCenter(formEditarCliente);                
                 formEditarCliente.toFront();
@@ -317,7 +315,7 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
                 formEditarCliente.dispose();
                 formEditarCliente = new TelaEditarCliente();
                 formEditarCliente.setCliente(cliente);
-                formEditarCliente.setTitle(cliente.getNome() + " " + cliente.getSobrenome());
+                formEditarCliente.setTitle(cliente.getNome());
                 this.getParent().add(formEditarCliente);
                 this.openFrameInCenter(formEditarCliente);                
                 formEditarCliente.toFront();

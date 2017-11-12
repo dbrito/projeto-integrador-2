@@ -226,7 +226,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if (cadastrarQuarto == null || !cadastrarQuarto.isDisplayable()) {
             cadastrarQuarto = new CadastrarProduto();
             desktop.add(cadastrarQuarto);
-            this.openFrameInCenter(cadastrarQuarto);
+           
         }
         cadastrarQuarto.toFront();
     }//GEN-LAST:event_menuCadastrarQuartoActionPerformed

@@ -70,7 +70,7 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setText("CFP:");
+        jLabel5.setText("CPF:");
 
         jLabel6.setText("Data Nasc");
 
@@ -219,7 +219,7 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
         //seus valores dos campos da tela
         Cliente cli = new Cliente();
         cli.setNome(fieldNome.getText());        
-        cli.setEndereco(fieldEndereco.getText());
+       
         cli.setComplemento(fieldComplemento.getText());
         cli.setBairro(fieldBairro.getText());        
         cli.setEstado(fieldEstado.getText());

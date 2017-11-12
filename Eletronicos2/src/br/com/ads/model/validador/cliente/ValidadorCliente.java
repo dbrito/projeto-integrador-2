@@ -24,7 +24,7 @@ public class ValidadorCliente {
                     + "valor de idade válido");
         }*/
         
-        System.out.println("MUEK" + cliente.getEndereco());
+        /*System.out.println("MUEK" + cliente.getEndereco());
         if (cliente.getEndereco() == null || "".equals(cliente.getEndereco())
                 || cliente.getNumero() == null
                 || cliente.getCep() == null 
@@ -32,6 +32,6 @@ public class ValidadorCliente {
                 || cliente.getEstado() == null || "".equals(cliente.getEstado())) {
             throw new ClienteException("É necessário informar o "
                     + "endereço do cliente");
-        }
+        }*/
     }
 }

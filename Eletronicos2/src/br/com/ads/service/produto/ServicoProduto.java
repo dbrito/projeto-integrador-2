@@ -1,6 +1,6 @@
 package br.com.ads.service.produto;
 
-import br.com.ads.exceptions.QuartoException;
+import br.com.ads.exceptions.ProdutoException;
 import br.com.ads.mock.MockProduto;
 import br.com.ads.exceptions.DataSourceException;
 import br.com.ads.model.produtos.Produto;
@@ -12,7 +12,7 @@ public class ServicoProduto {
 
     //Insere um quarto na fonte de dados
     public static void cadastrarQuarto(Produto quarto)
-            throws QuartoException, DataSourceException {
+            throws ProdutoException, DataSourceException {
         
         //Realiza validações no quarto
         ValidadorProduto.validar(quarto);
@@ -30,7 +30,7 @@ public class ServicoProduto {
 
     //Atualiza um quarto na fonte de dados
     public static void atualizarQuarto(Produto quarto)
-            throws QuartoException, DataSourceException {
+            throws ProdutoException, DataSourceException {
         
         //Realiza validações no quarto
         ValidadorProduto.validar(quarto);
@@ -49,7 +49,7 @@ public class ServicoProduto {
 
     //Realiza a pesquisa de um quarto por número na fonte de dados
     public static List<Produto> procurarQuarto(Long numero)
-            throws QuartoException, DataSourceException {
+            throws ProdutoException, DataSourceException {
         try {
             //Verifica se um parâmetro de pesquisa não foi informado.
             //Caso afirmativo, realiza uma listagem simples do mock.
@@ -69,7 +69,7 @@ public class ServicoProduto {
 
     //Obtem o quarto com ID informado do mock
     public static Produto obterQuarto(Integer id)
-            throws QuartoException, DataSourceException {
+            throws ProdutoException, DataSourceException {
         try {
             //Retorna o quarto obtido com o DAO
             return MockProduto.obter(id);
@@ -83,7 +83,7 @@ public class ServicoProduto {
 
     //Exclui o quarto com ID informado do mock
     public static void excluirQuarto(Integer id)
-            throws QuartoException, DataSourceException {
+            throws ProdutoException, DataSourceException {
         try {
             //Solicita ao DAO a exclusão do quarto informado
             MockProduto.excluir(id);

@@ -4,42 +4,71 @@ package br.com.ads.model.produtos;
 public class Produto {
 
     //Atributos
-    private Integer id;
-    private Long numero;
-    private Long andar;
-    private String tipo;
+    private Integer codigo;
+    private String nome;
+    private String marca;
+    private double preço;
+    private int quantidade;
+    private String categoria;
+    private String descrição;
 
     
     //Métodos de acesso
-    public Integer getId() {
-        return id;
-    }
-    
-    public void setId(Integer id) {    
-        this.id = id;
+
+    public Integer getCodigo() {
+        return codigo;
     }
 
-    public Long getNumero() {
-        return numero;
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
-    public void setNumero(Long numero) {
-        this.numero = numero;
+    public String getNome() {
+        return nome;
     }
 
-    public Long getAndar() {
-        return andar;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setAndar(Long andar) {
-        this.andar = andar;
+    public String getMarca() {
+        return marca;
     }
 
-    public String getTipo() {
-        return tipo;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public double getPoreço() {
+        return preço;
     }
+
+    public void setPoreço(double poreço) {
+        this.preço = poreço;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getDescrição() {
+        return descrição;
+    }
+
+    public void setDescrição(String descrição) {
+        this.descrição = descrição;
+    }
+   
 }

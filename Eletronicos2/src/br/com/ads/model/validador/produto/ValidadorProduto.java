@@ -1,27 +1,24 @@
 package br.com.ads.model.validador.produto;
 
-import br.com.ads.exceptions.QuartoException;
+import br.com.ads.exceptions.ProdutoException;
 import br.com.ads.model.produtos.Produto;
 
 //Validador de Produto
 public class ValidadorProduto {
-    public static  void validar(Produto quarto) throws QuartoException {
+    public static  void validar(Produto pro) throws ProdutoException {
         //Realização de validações de negócio
-        if (quarto == null) {
-            throw new QuartoException("Não foi informado um quarto");
+        if (pro == null) {
+            throw new ProdutoException("Não foi informado um codigo");
         }
-        if (quarto.getNumero() == null || quarto.getNumero() <= 0) {
-            throw new QuartoException("O número do quarto precisa ser "
+        if (pro.getCodigo()== null || pro.getCodigo()<= 0) {
+            throw new ProdutoException("O número do quarto precisa ser "
                 + "um valor positivo e maior que zero.");
         }
-        if (quarto.getAndar() == null || quarto.getAndar() <= 0) {
-            throw new QuartoException("O número do andar precisa ser "
-                + "um valor positivo e maior que zero.");
-        }
-        if (quarto.getTipo() == null || "".equals(quarto.getTipo())
-                || (!quarto.getTipo().equals("Simples"))
-                && !quarto.getTipo().equals("Luxo")) {
-            throw new QuartoException("É necessário informar o "
+        
+        if (pro.getCodigo()== null || "".equals(pro.getCodigo())
+                || (!pro.getCodigo().equals("Simples"))
+                && !pro.getCodigo().equals("Luxo")) {
+            throw new ProdutoException("É necessário informar o "
                     + "tipo do quarto");
         }
     }

@@ -24,10 +24,10 @@ public class MockCliente {
         if (clienteProcura != null && clienteProcura.getId() != null && !listaClientes.isEmpty()) {
             for (Cliente clienteLi : listaClientes) {
                 if (clienteLi != null && clienteLi.getId() == clienteProcura.getId()) {
-                    clienteLi.setGenero(clienteProcura.getGenero());
-                    clienteLi.setDataNascimento(clienteProcura.getDataNascimento());
+                    
+                   
                     clienteLi.setNome(clienteProcura.getNome());
-                    clienteLi.setSobrenome(clienteProcura.getSobrenome());
+                    
                     break;
                 }
             }
@@ -64,9 +64,8 @@ public class MockCliente {
         if (valor != null && !listaClientes.isEmpty()) {
             for (Cliente clienteLi : listaClientes) {
                 if (clienteLi != null && clienteLi.getNome() != null &&
-                    clienteLi.getSobrenome() != null) {
-                    if (clienteLi.getNome().toUpperCase().contains(valor.toUpperCase())
-                        || clienteLi.getSobrenome().toUpperCase().contains(valor.toUpperCase())) {
+                    clienteLi.getNome() != null) {
+                    if ( clienteLi.getNome().toUpperCase().contains(valor.toUpperCase())) {
                         listaResultado.add(clienteLi);
                     }
                 }

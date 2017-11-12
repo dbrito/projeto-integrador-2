@@ -1,6 +1,6 @@
 package br.com.ads.ui.produtos;
 
-import br.com.ads.exceptions.QuartoException;
+import br.com.ads.exceptions.ProdutoException;
 import br.com.ads.model.produtos.Produto;
 import br.com.ads.service.produto.ServicoProduto;
 import java.awt.Dimension;
@@ -27,7 +27,7 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
     }
 
     //Atualiza a lista de quartos. Pode ser chamado por outras telas
-    public boolean refreshList() throws QuartoException, Exception {
+    public boolean refreshList() throws ProdutoException, Exception {
         //Realiza a pesquisa de quartos com o último valor de pesquisa
         //para atualizar a lista
         List<Produto> resultado = ServicoProduto.
@@ -50,10 +50,8 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
             Produto cli = resultado.get(i);
             if (cli != null) {
                 Object[] row = new Object[5];
-                row[0] = cli.getId();
-                row[1] = cli.getNumero();
-                row[2] = cli.getAndar();
-                row[3] = cli.getTipo();
+                row[0] = cli.getCodigo();
+                
                 model.addRow(row);
             }
         }
@@ -242,7 +240,7 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
                 
                 //Solicita ao serviço a obtenção do quarto a partir do
                 //ID selecionado na tabela
-                Produto quarto = ServicoProduto.obterQuarto(id);
+                Produto pro = ServicoProduto.obterQuarto(id);
 
                 //Cria uma nova instância da tela de edição,
                 //configura o quarto selecionado como elemento a
@@ -251,9 +249,9 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
                 //componente de desktop, o "pai" da janela corrente
                 formEditarQuarto.dispose();
                 formEditarQuarto = new EditarProduto();
-                formEditarQuarto.setQuarto(quarto);
-                formEditarQuarto.setTitle("Quarto " + quarto.getNumero() + ", "
-                    + "Andar " + quarto.getAndar());
+                formEditarQuarto.setQuarto(pro);
+                formEditarQuarto.setTitle("Produto " + pro.getCodigo()+ ", "
+                    + "Andar " + pro.getNome());
                 this.getParent().add(formEditarQuarto);
                 this.openFrameInCenter(formEditarQuarto);                
                 formEditarQuarto.toFront();
@@ -290,8 +288,8 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
                 formEditarQuarto.dispose();
                 formEditarQuarto = new EditarProduto();
                 formEditarQuarto.setQuarto(quarto);
-                formEditarQuarto.setTitle("Quarto " + quarto.getNumero() + ", "
-                    + "Andar " + quarto.getAndar());
+                formEditarQuarto.setTitle("Quarto " + quarto.getCodigo()+ ", "
+                    + "Andar " + quarto.getNome());
                 this.getParent().add(formEditarQuarto);
                 this.openFrameInCenter(formEditarQuarto);                
                 formEditarQuarto.toFront();
