@@ -8,12 +8,12 @@ import javax.swing.JOptionPane;
 /**
  * Tela de atualização de quartos
  */
-public class EditarProduto extends javax.swing.JInternalFrame {
+public class TelaEditarProduto extends javax.swing.JInternalFrame {
     private Produto quarto = new Produto();
     /**
      * Construtor e inicialização de componentes
      */
-    public EditarProduto() {
+    public TelaEditarProduto() {
         initComponents();
     }
 
@@ -35,7 +35,7 @@ public class EditarProduto extends javax.swing.JInternalFrame {
         labelNumero = new javax.swing.JLabel();
         labelAndar = new javax.swing.JLabel();
         labelTipo = new javax.swing.JLabel();
-        comboTipo = new javax.swing.JComboBox<>();
+        comboTipo = new javax.swing.JComboBox<String>();
         buttonFechar = new javax.swing.JButton();
         buttonSalvar = new javax.swing.JButton();
         fFieldNumero = new javax.swing.JFormattedTextField();
@@ -71,7 +71,7 @@ public class EditarProduto extends javax.swing.JInternalFrame {
 
         labelTipo.setText("Tipo: ");
 
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Simples", "Luxo" }));
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Simples", "Luxo" }));
 
         buttonFechar.setText("Fechar");
         buttonFechar.addActionListener(new java.awt.event.ActionListener() {

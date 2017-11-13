@@ -2,8 +2,8 @@ package br.com.ads.ui.principal;
 
 import br.com.ads.ui.clientes.TelaCadastrarCliente;
 import br.com.ads.ui.clientes.TelaConsultarClientes;
-import br.com.ads.ui.produtos.CadastrarProduto;
-import br.com.ads.ui.produtos.ConsultarProduto;
+import br.com.ads.ui.produtos.TelaCadastrarProduto;
+import br.com.ads.ui.produtos.TelaConsultarProduto;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -20,8 +20,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private TelaCadastrarCliente cadastrarCliente = null;
     private TelaConsultarClientes consultarClientes = null;
-    private CadastrarProduto cadastrarQuarto = null;
-    private ConsultarProduto consultarQuartos = null;
+    private TelaCadastrarProduto cadastrarProduto = null;
+    private TelaConsultarProduto consultarQuartos = null;
 
     /**
      * Construtor e inicialização de componentes
@@ -50,19 +50,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.consultarClientes = consultarClientes;
     }
 
-    public CadastrarProduto getCadastrarQuarto() {
-        return cadastrarQuarto;
+    public TelaCadastrarProduto getCadastrarProduto() {
+        return cadastrarProduto;
     }
 
-    public void setCadastrarQuarto(CadastrarProduto cadastrarQuarto) {
-        this.cadastrarQuarto = cadastrarQuarto;
+    public void setCadastrarQuarto(TelaCadastrarProduto cadastrarProduto) {
+        this.cadastrarProduto = cadastrarProduto;
     }
 
-    public ConsultarProduto getConsultarQuartos() {
+    public TelaConsultarProduto getConsultarQuartos() {
         return consultarQuartos;
     }
 
-    public void setConsultarQuartos(ConsultarProduto consultarQuartos) {
+    public void setConsultarQuartos(TelaConsultarProduto consultarQuartos) {
         this.consultarQuartos = consultarQuartos;
     }
 
@@ -223,12 +223,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void menuCadastrarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarQuartoActionPerformed
         //Verifica se não há uma janela de cadastro de quartos visível.
         //Caso afirmativo, cria uma janela de cadastro de quartos e a exibe
-        if (cadastrarQuarto == null || !cadastrarQuarto.isDisplayable()) {
-            cadastrarQuarto = new CadastrarProduto();
-            desktop.add(cadastrarQuarto);
+        System.out.println((cadastrarProduto == null || !cadastrarProduto.isDisplayable()));
+        if (cadastrarProduto == null || !cadastrarProduto.isDisplayable()) {
+            cadastrarProduto = new TelaCadastrarProduto();
+            desktop.add(cadastrarProduto);
+            this.openFrameInCenter(cadastrarProduto);
            
         }
-        cadastrarQuarto.toFront();
+        cadastrarProduto.toFront();
     }//GEN-LAST:event_menuCadastrarQuartoActionPerformed
 
     //Listener do item de menu
@@ -236,7 +238,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //Verifica se não há uma janela de consulta de quartos visível.
         //Caso afirmativo, cria uma janela de consulta de quartos e a exibe
         if (consultarQuartos == null || !consultarQuartos.isDisplayable()) {
-            consultarQuartos = new ConsultarProduto();
+            consultarQuartos = new TelaConsultarProduto();
             desktop.add(consultarQuartos);
             this.openFrameInCenter(consultarQuartos);
         }

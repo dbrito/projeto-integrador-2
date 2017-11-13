@@ -12,17 +12,17 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Tela de consulta de quartos
  */
-public class ConsultarProduto extends javax.swing.JInternalFrame {
+public class TelaConsultarProduto extends javax.swing.JInternalFrame {
 
     //Instância do form de edição de quartos
-    EditarProduto formEditarQuarto = new EditarProduto();
+    TelaEditarProduto formEditarQuarto = new TelaEditarProduto();
     //Armazena a última pesquisa realizada
     Long ultimaPesquisa = null;
     
     /**
      * Construtor e inicialização de componentes
      */
-    public ConsultarProduto() {
+    public TelaConsultarProduto() {
         initComponents();
     }
 
@@ -248,7 +248,7 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
                 //Para exibir a tela, é necessário adicioná-la ao
                 //componente de desktop, o "pai" da janela corrente
                 formEditarQuarto.dispose();
-                formEditarQuarto = new EditarProduto();
+                formEditarQuarto = new TelaEditarProduto();
                 formEditarQuarto.setQuarto(pro);
                 formEditarQuarto.setTitle("Produto " + pro.getCodigo()+ ", "
                     + "Andar " + pro.getNome());
@@ -286,7 +286,7 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
                 //Para exibir a tela, é necessário adicioná-la ao
                 //componente de desktop, o "pai" da janela corrente
                 formEditarQuarto.dispose();
-                formEditarQuarto = new EditarProduto();
+                formEditarQuarto = new TelaEditarProduto();
                 formEditarQuarto.setQuarto(quarto);
                 formEditarQuarto.setTitle("Quarto " + quarto.getCodigo()+ ", "
                     + "Andar " + quarto.getNome());
