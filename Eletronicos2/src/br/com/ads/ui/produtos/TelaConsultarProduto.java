@@ -29,7 +29,7 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
         //Realiza a pesquisa de produtos com o último valor de pesquisa
         //para atualizar a lista
         String termo = fieldPesquisa.getText().trim();
-        List<Produto> resultado = ServicoProduto.procurarQuarto((!termo.equals("") ? termo : null));
+        List<Produto> resultado = ServicoProduto.procurarProduto((!termo.equals("") ? termo : null));
         
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tabelaResultados.getModel();

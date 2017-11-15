@@ -44,7 +44,7 @@ public class ServicoProduto {
     }
 
     //Realiza a pesquisa de um produto por número na fonte de dados
-    public static List<Produto> procurarQuarto(String termo) throws ProdutoException, DataSourceException {
+    public static List<Produto> procurarProduto(String termo) throws ProdutoException, DataSourceException {
         try {
             //Verifica se um parâmetro de pesquisa não foi informado.
             //Caso afirmativo, realiza uma listagem simples do mock.
