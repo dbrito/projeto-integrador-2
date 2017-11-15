@@ -7,19 +7,17 @@ import br.com.ads.model.produtos.Produto;
 import br.com.ads.model.validador.produto.ValidadorProduto;
 import java.util.List;
 
-//Classe de serviço de quarto
+//Classe de serviço de produto
 public class ServicoProduto {
 
-    //Insere um quarto na fonte de dados
-    public static void cadastrarQuarto(Produto quarto)
-            throws ProdutoException, DataSourceException {
-        
-        //Realiza validações no quarto
-        ValidadorProduto.validar(quarto);
+    //Insere um produto na fonte de dados
+    public static void cadastrarProduto(Produto produto) throws ProdutoException, DataSourceException {        
+        //Realiza validações no produto
+        ValidadorProduto.validar(produto);
 
         try {
             //Realiza a chamada de inserção na fonte de dados
-            MockProduto.inserir(quarto);
+            MockProduto.inserir(produto);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão
@@ -28,16 +26,14 @@ public class ServicoProduto {
         }
     }
 
-    //Atualiza um quarto na fonte de dados
-    public static void atualizarQuarto(Produto quarto)
-            throws ProdutoException, DataSourceException {
-        
-        //Realiza validações no quarto
-        ValidadorProduto.validar(quarto);
+    //Atualiza um produto na fonte de dados
+    public static void atualizarProduto(Produto produto) throws ProdutoException, DataSourceException {        
+        //Realiza validações no produto
+        ValidadorProduto.validar(produto);
 
         try {
             //Realiza a chamada de atualização na fonte de dados
-            MockProduto.atualizar(quarto);
+            MockProduto.atualizar(produto);
             return;
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
@@ -47,17 +43,16 @@ public class ServicoProduto {
         }
     }
 
-    //Realiza a pesquisa de um quarto por número na fonte de dados
-    public static List<Produto> procurarQuarto(Long numero)
-            throws ProdutoException, DataSourceException {
+    //Realiza a pesquisa de um produto por número na fonte de dados
+    public static List<Produto> procurarQuarto(String termo) throws ProdutoException, DataSourceException {
         try {
             //Verifica se um parâmetro de pesquisa não foi informado.
             //Caso afirmativo, realiza uma listagem simples do mock.
             //Caso contrário, realiza uma pesquisa com o parâmetro
-            if (numero == null) {
+            if (termo == null) {
                 return MockProduto.listar();
             } else {
-                return MockProduto.procurar(numero);
+                return MockProduto.procurar(termo);
             }
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
@@ -67,12 +62,12 @@ public class ServicoProduto {
         }
     }
 
-    //Obtem o quarto com ID informado do mock
-    public static Produto obterQuarto(Integer id)
+    //Obtem o produto com ID informado do mock
+    public static Produto obterProduto(String codigo)
             throws ProdutoException, DataSourceException {
         try {
-            //Retorna o quarto obtido com o DAO
-            return MockProduto.obter(id);
+            //Retorna o produto obtido com o DAO
+            return MockProduto.obter(codigo);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão
@@ -81,12 +76,12 @@ public class ServicoProduto {
         }
     }
 
-    //Exclui o quarto com ID informado do mock
-    public static void excluirQuarto(Integer id)
+    //Exclui o produto com ID informado do mock
+    public static void excluirProduto(String codigo)
             throws ProdutoException, DataSourceException {
         try {
-            //Solicita ao DAO a exclusão do quarto informado
-            MockProduto.excluir(id);
+            //Solicita ao DAO a exclusão do produto informado
+            MockProduto.excluir(codigo);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão

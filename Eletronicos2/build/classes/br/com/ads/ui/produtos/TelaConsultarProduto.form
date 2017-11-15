@@ -7,7 +7,7 @@
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" value="Consultar Quartos"/>
+    <Property name="title" type="java.lang.String" value="Consultar Produtos"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -34,7 +34,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="labelPesquisarQuarto" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fFieldPesquisa" max="32767" attributes="0"/>
+                      <Component id="fieldPesquisa" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonPesquisar" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -57,7 +57,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelPesquisarQuarto" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fFieldPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="scrollTabelaResultados" pref="250" max="32767" attributes="0"/>
@@ -88,11 +88,12 @@
         <Component class="javax.swing.JTable" name="tabelaResultados">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="0">
-                <Column editable="false" title="Id" type="java.lang.Object"/>
-                <Column editable="false" title="N&#xfa;mero" type="java.lang.Integer"/>
-                <Column editable="false" title="Andar" type="java.lang.Integer"/>
-                <Column editable="false" title="Tipo" type="java.lang.String"/>
+              <Table columnCount="5" rowCount="0">
+                <Column editable="false" title="C&#xf3;dgio" type="java.lang.String"/>
+                <Column editable="false" title="Nome" type="java.lang.String"/>
+                <Column editable="false" title="Marca" type="java.lang.String"/>
+                <Column editable="false" title="Categoria" type="java.lang.String"/>
+                <Column editable="false" title="Preco" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
@@ -137,7 +138,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPesquisarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="fFieldPesquisa">
+    <Component class="javax.swing.JTextField" name="fieldPesquisa">
     </Component>
   </SubComponents>
 </Form>

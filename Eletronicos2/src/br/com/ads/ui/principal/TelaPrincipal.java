@@ -221,8 +221,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     //Listener do item de menu
     private void menuCadastrarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarQuartoActionPerformed
-        //Verifica se não há uma janela de cadastro de quartos visível.
-        //Caso afirmativo, cria uma janela de cadastro de quartos e a exibe
+        //Verifica se não há uma janela de cadastro de produtos visível.
+        //Caso afirmativo, cria uma janela de cadastro de produtos e a exibe
         System.out.println((cadastrarProduto == null || !cadastrarProduto.isDisplayable()));
         if (cadastrarProduto == null || !cadastrarProduto.isDisplayable()) {
             cadastrarProduto = new TelaCadastrarProduto();
@@ -235,8 +235,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     //Listener do item de menu
     private void menuConsultarQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarQuartosActionPerformed
-        //Verifica se não há uma janela de consulta de quartos visível.
-        //Caso afirmativo, cria uma janela de consulta de quartos e a exibe
+        //Verifica se não há uma janela de consulta de produtos visível.
+        //Caso afirmativo, cria uma janela de consulta de produtos e a exibe
         if (consultarQuartos == null || !consultarQuartos.isDisplayable()) {
             consultarQuartos = new TelaConsultarProduto();
             desktop.add(consultarQuartos);

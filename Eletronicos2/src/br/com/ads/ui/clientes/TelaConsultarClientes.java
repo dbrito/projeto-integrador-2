@@ -200,7 +200,7 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
         for (int i = 0; i < resultado.size(); i++) {
             Cliente cli = resultado.get(i);
             if (cli != null) {
-                Object[] row = new Object[5];
+                Object[] row = new Object[3];
                 row[0] = cli.getId();
                 row[1] = cli.getNome();
                 row[2] = cli.getCpf();

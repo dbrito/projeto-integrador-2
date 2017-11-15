@@ -5,7 +5,7 @@ import br.com.ads.service.produto.ServicoProduto;
 import javax.swing.JOptionPane;
 
 /**
- * Tela de cadastro de quartos
+ * Tela de cadastro de produtos
  */
 public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
 
@@ -14,7 +14,6 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
      */
     public TelaCadastrarProduto() {
         initComponents();
-        System.out.println("uol");
     }
 
     /**
@@ -24,28 +23,28 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelNumero = new javax.swing.JLabel();
-        labelAndar = new javax.swing.JLabel();
-        labelTipo = new javax.swing.JLabel();
-        comboTipo = new javax.swing.JComboBox<String>();
         buttonFechar = new javax.swing.JButton();
         buttonSalvar = new javax.swing.JButton();
-        fFieldNumero = new javax.swing.JFormattedTextField();
-        fFieldAndar = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
+        fieldCodigo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        fieldNome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        fieldMarca = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        fieldPreco = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        fieldQuantidade = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        comboCategoria = new javax.swing.JComboBox<String>();
+        jLabel5 = new javax.swing.JLabel();
+        fieldDescricao = new javax.swing.JTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Cadastrar Produto");
-
-        labelNumero.setText("Número: ");
-
-        labelAndar.setText("Andar: ");
-
-        labelTipo.setText("Tipo: ");
-
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Simples", "Luxo" }));
 
         buttonFechar.setText("Fechar");
         buttonFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -61,9 +60,21 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
             }
         });
 
-        fFieldNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        jLabel7.setText("Código:");
 
-        fFieldAndar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        jLabel1.setText("Nome:");
+
+        jLabel2.setText("Marca:");
+
+        jLabel3.setText("Preço:");
+
+        jLabel4.setText("Quantidade:");
+
+        jLabel6.setText("Categoria:");
+
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TVs", "Audio", "SmarthPhone", "Consoles", " ", " ", " " }));
+
+        jLabel5.setText("Descrição:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,47 +82,68 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonFechar)
+                        .addGap(226, 226, 226)
+                        .addComponent(buttonSalvar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelNumero, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelAndar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelTipo, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboTipo, 0, 332, Short.MAX_VALUE)
-                            .addComponent(fFieldNumero)
-                            .addComponent(fFieldAndar))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonFechar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonSalvar)
-                        .addGap(10, 10, 10))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(fieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldMarca)
+                            .addComponent(fieldPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(fieldDescricao)
+                            .addComponent(fieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNumero)
-                    .addComponent(fFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7)
+                    .addComponent(fieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAndar)
-                    .addComponent(fFieldAndar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTipo)
-                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(fieldMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(fieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(fieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(fieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSalvar)
                     .addComponent(buttonFechar))
                 .addContainerGap())
         );
-
-        getAccessibleContext().setAccessibleName("Cadastrar Produto");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -123,33 +155,26 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
 
     //Listener do botão salvar
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-        //Cria uma instância do quarto e obtém
+        //Cria uma instância do produto e obtém
         //seus valores dos campos da tela
         Produto produto = new Produto();
+        produto.setCodigo(fieldCodigo.getText().trim());
+        produto.setNome(fieldNome.getText().trim());
+        produto.setMarca(fieldMarca.getText().trim());
+        produto.setCategoria((String) comboCategoria.getSelectedItem());
+        produto.setDescrição(fieldDescricao.getText().trim());
         
-        /*Long numero = null;
         try {
-            Number number = (Number) fFieldNumero.getValue();
-            numero = number.longValue();
+            Float preco = Float.parseFloat(fieldPreco.getText()) ;
+            produto.setPreco(preco);            
+            Integer quantidade = Integer.parseInt(fieldQuantidade.getText());
+            produto.setQuantidade(quantidade);
         } catch (Exception e) {
-
         }
-        qua.setNumero(numero);
         
-        Long andar = null;
         try {
-            Number number = (Number) fFieldAndar.getValue();
-            andar = number.longValue();
-        } catch (Exception e) {
-
-        }
-        qua.setAndar(andar);
-        
-        qua.setTipo((String) comboTipo.getSelectedItem());*/
-
-        try {
-            //Chama o serviço para cadastro do quarto
-            ServicoProduto.cadastrarQuarto(produto);
+            //Chama o serviço para cadastrar o produto
+            ServicoProduto.cadastrarProduto(produto);
         } catch (Exception e) {
             //Exibe mensagens de erro para o usuário
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
@@ -157,27 +182,36 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
             return;
         }
 
-        //Caso tenha chegado até aqui, o quarto foi inserido com sucesso
-        //Então exibe uma mensagem de sucesso para o usuário
-        JOptionPane.showMessageDialog(rootPane, "Quarto inserido com sucesso",
+        //Caso tenha cadastrado exibe a mensagem de sucesso
+        JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso",
                 "Cadastro efetuado", JOptionPane.INFORMATION_MESSAGE);
 
         //Limpa os campos da tela após realizar a inserção        
-        fFieldNumero.setText("");
-        fFieldNumero.setValue(null);
-        fFieldAndar.setText("");
-        fFieldAndar.setValue(null);
-        comboTipo.setSelectedIndex(0);
+        fieldCodigo.setText("");
+        fieldNome.setText("");
+        fieldPreco.setText("");
+        fieldMarca.setText("");
+        fieldQuantidade.setText("");
+        comboCategoria.setSelectedIndex(0);
+        fieldDescricao.setText("");        
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonFechar;
     private javax.swing.JButton buttonSalvar;
-    private javax.swing.JComboBox<String> comboTipo;
-    private javax.swing.JFormattedTextField fFieldAndar;
-    private javax.swing.JFormattedTextField fFieldNumero;
-    private javax.swing.JLabel labelAndar;
-    private javax.swing.JLabel labelNumero;
-    private javax.swing.JLabel labelTipo;
+    private javax.swing.JComboBox<String> comboCategoria;
+    private javax.swing.JTextField fieldCodigo;
+    private javax.swing.JTextField fieldDescricao;
+    private javax.swing.JTextField fieldMarca;
+    private javax.swing.JTextField fieldNome;
+    private javax.swing.JTextField fieldPreco;
+    private javax.swing.JTextField fieldQuantidade;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

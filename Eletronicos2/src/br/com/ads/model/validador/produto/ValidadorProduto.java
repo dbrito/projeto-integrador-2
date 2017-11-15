@@ -7,19 +7,29 @@ import br.com.ads.model.produtos.Produto;
 public class ValidadorProduto {
     public static  void validar(Produto pro) throws ProdutoException {
         //Realização de validações de negócio
-        if (pro == null) {
-            throw new ProdutoException("Não foi informado um codigo");
+        if (pro.getCodigo() == null || pro.getCodigo().trim().equals("")) {
+            throw new ProdutoException("Não foi informado um código");
         }
-        if (pro.getCodigo()== null || pro.getCodigo()<= 0) {
-            throw new ProdutoException("O número do quarto precisa ser "
-                + "um valor positivo e maior que zero.");
+
+        if (pro.getNome() == null || pro.getNome().trim().equals("")) {
+            throw new ProdutoException("Não foi informado um Nome");
+        }
+
+        if (pro.getMarca() == null  || pro.getMarca().trim().equals("")) {
+            throw new ProdutoException("Não foi informado uma Marca");
+        }
+
+        if (pro.getPreco() <= 0) {
+            throw new ProdutoException("Informe um preço válido");
+        }
+
+        if (pro.getQuantidade() <= 0) {
+            throw new ProdutoException("Informe a quantidade");
+        }
+
+        if (pro.getDescricao() == null  || pro.getDescricao().trim().equals("")) {
+            throw new ProdutoException("Não foi informado uma Descricao");
         }
         
-        if (pro.getCodigo()== null || "".equals(pro.getCodigo())
-                || (!pro.getCodigo().equals("Simples"))
-                && !pro.getCodigo().equals("Luxo")) {
-            throw new ProdutoException("É necessário informar o "
-                    + "tipo do quarto");
-        }
     }
 }

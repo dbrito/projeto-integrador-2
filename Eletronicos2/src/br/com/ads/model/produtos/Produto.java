@@ -1,25 +1,24 @@
 package br.com.ads.model.produtos;
 
-//Classe de negócio de quarto
 public class Produto {
 
     //Atributos
-    private Integer codigo;
+    private String codigo;
     private String nome;
     private String marca;
-    private double preço;
+    private double preco;
     private int quantidade;
     private String categoria;
-    private String descrição;
+    private String descricao;
 
     
     //Métodos de acesso
 
-    public Integer getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -39,12 +38,12 @@ public class Produto {
         this.marca = marca;
     }
 
-    public double getPoreço() {
-        return preço;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setPoreço(double poreço) {
-        this.preço = poreço;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
     public int getQuantidade() {
@@ -63,12 +62,12 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setDescrição(String descricao) {
+        this.descricao = descricao;
     }
    
 }

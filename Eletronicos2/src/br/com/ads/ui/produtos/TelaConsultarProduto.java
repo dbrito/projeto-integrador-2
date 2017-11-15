@@ -10,14 +10,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Tela de consulta de quartos
+ * Tela de consulta de produtos
  */
 public class TelaConsultarProduto extends javax.swing.JInternalFrame {
 
-    //Instância do form de edição de quartos
-    TelaEditarProduto formEditarQuarto = new TelaEditarProduto();
-    //Armazena a última pesquisa realizada
-    Long ultimaPesquisa = null;
+    //Instância do form de edição de produtos
+    TelaEditarProduto formEditarProduto = new TelaEditarProduto();
     
     /**
      * Construtor e inicialização de componentes
@@ -26,13 +24,13 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    //Atualiza a lista de quartos. Pode ser chamado por outras telas
+    //Atualiza a lista de produtos. Pode ser chamado por outras telas
     public boolean refreshList() throws ProdutoException, Exception {
-        //Realiza a pesquisa de quartos com o último valor de pesquisa
+        //Realiza a pesquisa de produtos com o último valor de pesquisa
         //para atualizar a lista
-        List<Produto> resultado = ServicoProduto.
-                procurarQuarto(ultimaPesquisa);
-
+        String termo = fieldPesquisa.getText().trim();
+        List<Produto> resultado = ServicoProduto.procurarQuarto((!termo.equals("") ? termo : null));
+        
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tabelaResultados.getModel();
         //Indica que a tabela deve excluir todos seus elementos
@@ -51,7 +49,10 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
             if (cli != null) {
                 Object[] row = new Object[5];
                 row[0] = cli.getCodigo();
-                
+                row[1] = cli.getNome();
+                row[2] = cli.getMarca();
+                row[3] = cli.getCategoria();
+                row[4] = String.valueOf(cli.getPreco());                
                 model.addRow(row);
             }
         }
@@ -60,6 +61,43 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
         //retornamos "true" para o elemento acionante, indicando
         //que não devem ser exibidas mensagens de erro
         return true;
+    }
+    
+    private void editaProduto() {
+        try {
+            //Obtém a linha selecionada na tabela de resultados
+            final int row = tabelaResultados.getSelectedRow();
+            //Verifica se há linha selecionada na tabela
+            if (row >= 0) {
+                //Obtém a linha selecionada na tabela
+                String codigo = (String) tabelaResultados.getValueAt(row, 0);
+                
+                //Solicita ao serviço a obtenção do produto a partir do
+                //ID selecionado na tabela
+                Produto pro = ServicoProduto.obterProduto(codigo);
+
+                //Cria uma nova instância da tela de edição,
+                //configura o produto selecionado como elemento a
+                //ser editado e mostra a tela de edição.
+                //Para exibir a tela, é necessário adicioná-la ao
+                //componente de desktop, o "pai" da janela corrente
+                formEditarProduto.dispose();
+                formEditarProduto = new TelaEditarProduto();
+                formEditarProduto.setProduto(pro);
+                formEditarProduto.setTitle("Produto: " + pro.getNome());
+                this.getParent().add(formEditarProduto);
+                this.openFrameInCenter(formEditarProduto);                
+                formEditarProduto.toFront();
+            }
+        } catch (Exception e) {
+            //Se ocorrer algum erro técnico, mostra-o no console,
+            //mas esconde-o do usuário
+            e.printStackTrace();
+            //Exibe uma mensagem de erro genérica ao usuário
+            JOptionPane.showMessageDialog(rootPane, "Não é possível "
+                + "exibir os detalhes deste produto.",
+                "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     /**
@@ -76,14 +114,14 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
         buttonAlterar = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
         buttonPesquisar = new javax.swing.JButton();
-        fFieldPesquisa = new javax.swing.JTextField();
+        fieldPesquisa = new javax.swing.JTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Consultar Quartos");
+        setTitle("Consultar Produtos");
 
         labelPesquisarQuarto.setText("Pesquisar: ");
 
@@ -92,14 +130,14 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Número", "Andar", "Tipo"
+                "Códgio", "Nome", "Marca", "Categoria", "Preco"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -157,7 +195,7 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelPesquisarQuarto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fFieldPesquisa)
+                        .addComponent(fieldPesquisa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonPesquisar))
                     .addGroup(layout.createSequentialGroup()
@@ -175,7 +213,7 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPesquisarQuarto)
                     .addComponent(buttonPesquisar)
-                    .addComponent(fFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollTabelaResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -197,24 +235,23 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         //Verifica se há itens selecionados para exclusão.
         //Caso negativo, ignora o comando
-        if (tabelaResultados.getSelectedRow() >= 0) {
-            
+        if (tabelaResultados.getSelectedRow() >= 0) {            
             //Obtém a linha do item selecionado
             final int row = tabelaResultados.getSelectedRow();
-            //Obtém o nome do quarto da linha indicada para exibição
+            //Obtém o nome do produto da linha indicada para exibição
             //de mensagem de confirmação de exclusão utilizando seu número
-            Long numero = (Long) tabelaResultados.getValueAt(row, 1);
+            String nome = (String) tabelaResultados.getValueAt(row, 1);
             //Mostra o diálogo de confirmação de exclusão
             int resposta = JOptionPane.showConfirmDialog(rootPane,
-                "Excluir o quarto \"" + numero + "\"?",
+                "Excluir \"" + nome + "\"?",
                 "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
             //Se o valor de resposta for "Sim" para a exclusão
             if (resposta == JOptionPane.YES_OPTION) {
                 try {
-                    //Obtém o ID do quarto
-                    Integer id = (Integer) tabelaResultados.getValueAt(row, 0);
-                    //Solicita ao serviço a inativação do quarto com o ID
-                    ServicoProduto.excluirQuarto(id);
+                    //Obtém o ID do produto
+                    String codigo = (String) tabelaResultados.getValueAt(row, 0);
+                    //Solicita ao serviço a inativação do produto com o ID
+                    ServicoProduto.excluirProduto(codigo);
                     //Atualiza a lista após a "exclusão"
                     this.refreshList();
                 } catch (Exception e) {
@@ -230,107 +267,19 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
-        try {
-            //Obtém a linha selecionada na tabela de resultados
-            final int row = tabelaResultados.getSelectedRow();
-            //Verifica se há linha selecionada na tabela
-            if (row >= 0) {
-                //Obtém a linha selecionada na tabela
-                Integer id = (Integer) tabelaResultados.getValueAt(row, 0);
-                
-                //Solicita ao serviço a obtenção do quarto a partir do
-                //ID selecionado na tabela
-                Produto pro = ServicoProduto.obterQuarto(id);
-
-                //Cria uma nova instância da tela de edição,
-                //configura o quarto selecionado como elemento a
-                //ser editado e mostra a tela de edição.
-                //Para exibir a tela, é necessário adicioná-la ao
-                //componente de desktop, o "pai" da janela corrente
-                formEditarQuarto.dispose();
-                formEditarQuarto = new TelaEditarProduto();
-                formEditarQuarto.setQuarto(pro);
-                formEditarQuarto.setTitle("Produto " + pro.getCodigo()+ ", "
-                    + "Andar " + pro.getNome());
-                this.getParent().add(formEditarQuarto);
-                this.openFrameInCenter(formEditarQuarto);                
-                formEditarQuarto.toFront();
-            }
-        } catch (Exception e) {
-            //Se ocorrer algum erro técnico, mostra-o no console,
-            //mas esconde-o do usuário
-            e.printStackTrace();
-            //Exibe uma mensagem de erro genérica ao usuário
-            JOptionPane.showMessageDialog(rootPane, "Não é possível "
-                + "exibir os detalhes deste quarto.",
-                "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
-        }
+        editaProduto();
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
     private void tabelaResultadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaResultadosMouseClicked
         //Verifica se o clique é um clique duplo       
         if (evt.getClickCount() == 2) {
-            try {                
-                //Obtém a linha selecionada da tabela de resultados
-                final int row = tabelaResultados.getSelectedRow();
-                //Obtém o valor do ID da coluna "ID" da tabela de resultados
-                Integer id = (Integer) tabelaResultados.getValueAt(row, 0);
-                
-                //Com o ID da coluna, chama o serviço de quarto para
-                //obter o quarto com dados atualizados do mock
-                Produto quarto = ServicoProduto.obterQuarto(id);
-
-                //Cria uma nova instância da tela de edição,
-                //configura o quarto selecionado como elemento a
-                //ser editado e mostra a tela de edição.
-                //Para exibir a tela, é necessário adicioná-la ao
-                //componente de desktop, o "pai" da janela corrente
-                formEditarQuarto.dispose();
-                formEditarQuarto = new TelaEditarProduto();
-                formEditarQuarto.setQuarto(quarto);
-                formEditarQuarto.setTitle("Quarto " + quarto.getCodigo()+ ", "
-                    + "Andar " + quarto.getNome());
-                this.getParent().add(formEditarQuarto);
-                this.openFrameInCenter(formEditarQuarto);                
-                formEditarQuarto.toFront();
-            } catch (Exception e) {
-                //Se ocorrer algum erro técnico, mostra-o no console,
-                //mas esconde-o do usuário
-                e.printStackTrace();
-                //Exibe uma mensagem de erro genérica ao usuário
-                JOptionPane.showMessageDialog(rootPane, "Não é possível "
-                    + "exibir os detalhes deste quarto.",
-                    "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
-            }
+            editaProduto();
         }
     }//GEN-LAST:event_tabelaResultadosMouseClicked
 
     private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
-        //Inicializa o sucesso da pesquisa com valor negativo, indicando que
-        //a pesquisa de quartos não obteve resultados (situação padrão)
-        boolean resultSearch = false;
-        
-        //Grava o campo de pesquisa como a última pesquisa válida. O valor
-        //de última pesquisa válida é utilizado na atualização da lista
-        if (fFieldPesquisa.getText() != null &&
-                !fFieldPesquisa.getText().equals("")) {
-            try {
-                ultimaPesquisa = Long.parseLong(fFieldPesquisa.getText());
-            } catch (Exception e) {
-                //Exibe mensagens de erro na fonte de dados e para o listener
-                JOptionPane.showMessageDialog(rootPane, "Só é possível"
-                        + " pesquisar por um valor inteiro válido",
-                        "Campo de pesquisa inválido", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-        else {
-            ultimaPesquisa = null;
-        }
-
+        Boolean resultSearch;
         try {
-            //Solicita a atualização da lista com o novo critério
-            //de pesquisa (ultimaPesquisa)
             resultSearch = refreshList();
         } catch (Exception e) {
             //Exibe mensagens de erro na fonte de dados e para o listener
@@ -362,7 +311,7 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonFechar;
     private javax.swing.JButton buttonPesquisar;
-    private javax.swing.JTextField fFieldPesquisa;
+    private javax.swing.JTextField fieldPesquisa;
     private javax.swing.JLabel labelPesquisarQuarto;
     private javax.swing.JScrollPane scrollTabelaResultados;
     private javax.swing.JTable tabelaResultados;

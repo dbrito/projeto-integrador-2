@@ -5,29 +5,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-//Mock de Produto. Realiza operações de mock com o quarto
+//Mock de Produto. Realiza operações de mock com o produto
 public class MockProduto {
     private static int totalProdutos = 0;
-    /** Armazena a lista de quartos inseridos para manipulação. #MOCK **/    
+    /** Armazena a lista de produtos inseridos para manipulação. #MOCK **/    
     private static List<Produto> listaProdutos = new ArrayList<Produto>();
 
-    //Insere um quarto no mock "quarto"
+    //Insere um produto no mock "produto"
     public static void inserir(Produto pro)
             throws Exception {
-        pro.setCodigo(totalProdutos++);
+        //pro.setCodigo(totalProdutos++);
         listaProdutos.add(pro);
     }
 
-    //Realiza a atualização dos dados de um quarto, com ID e dados
+    //Realiza a atualização dos dados de um produto, com ID e dados
     //fornecidos como parâmetro através de um objeto da classe "Produto"
     public static void atualizar(Produto produtoProcura)
             throws Exception {
         if (produtoProcura != null && produtoProcura.getCodigo()!= null && !listaProdutos.isEmpty()) {
-            for (Produto quartoCli : listaProdutos) {
-                if (quartoCli != null && quartoCli.getCodigo()== produtoProcura.getCodigo()) {
-                    quartoCli.setCodigo(produtoProcura.getCodigo());
-                    quartoCli.setNome(produtoProcura.getNome());
-                    quartoCli.setMarca(produtoProcura.getMarca());
+            for (Produto produto : listaProdutos) {
+                if (produto != null && produto.getCodigo()== produtoProcura.getCodigo()) {
+                    produto.setNome(produtoProcura.getNome());
+                    produto.setMarca(produtoProcura.getMarca());
+                    produto.setPreco(produtoProcura.getPreco());
+                    produto.setQuantidade(produtoProcura.getQuantidade());
+                    produto.setCategoria(produtoProcura.getCategoria());                                        
+                    produto.setDescrição(produtoProcura.getDescricao());
                     break;
                 }
             }
@@ -36,11 +39,11 @@ public class MockProduto {
 
     //Realiza a exclusão de um cliente no mock, com ID fornecido
     //como parâmetro.
-    public static void excluir(Integer id) throws Exception {
-        if (id != null && !listaProdutos.isEmpty()) {
+    public static void excluir(String codigo) throws Exception {
+        if (codigo != null && !listaProdutos.isEmpty()) {
             for (int i = 0; i < listaProdutos.size(); i++) {
-                Produto quartoLi = listaProdutos.get(i);
-                if (quartoLi != null && quartoLi.getCodigo() == id) {
+                Produto produtoLi = listaProdutos.get(i);
+                if (produtoLi != null && produtoLi.getCodigo() == codigo) {
                     listaProdutos.remove(i);
                     break;
                 }
@@ -48,25 +51,25 @@ public class MockProduto {
         }
     }
 
-    //Lista todos os quartos
+    //Lista todos os produtos
     public static List<Produto> listar()
             throws Exception {        
-        //Retorna a lista de quartos 
+        //Retorna a lista de produtos 
         return listaProdutos;
     }
 
-    //Procura um quarto na lista, de acordo com o numero
-    //do quarto passado como parâmetro
-    public static List<Produto> procurar(Long valor)
+    //Procura um produto na lista, de acordo com o numero
+    //do produto passado como parâmetro
+    public static List<Produto> procurar(String termo)
             throws Exception {
         List<Produto> listaResultado = new ArrayList<Produto>();
         
-        if (valor != null && !listaProdutos.isEmpty()) {
+        if (termo != null && !listaProdutos.isEmpty()) {
             for (Produto produtoLi : listaProdutos) {
                 if (produtoLi != null && produtoLi.getCodigo()!= null &&
                     produtoLi.getCategoria()!= null) {
-                    if (Objects.equals(produtoLi.getCodigo(), valor) ||
-                        Objects.equals(produtoLi.getCodigo(), valor)) {
+                    //procuro o produto por nome, marca e código
+                    if (produtoLi.getNome().contains(termo) || produtoLi.getMarca().contains(termo) || produtoLi.getCodigo().contains(termo) ){
                         listaResultado.add(produtoLi);
                     }
                 }
@@ -77,14 +80,14 @@ public class MockProduto {
         return listaResultado;
     }
 
-    //Obtém um quarto da lista
-    public static Produto obter(Integer id)
+    //Obtém um produto da lista
+    public static Produto obter(String codigo)
             throws Exception {
-        if (id != null && !listaProdutos.isEmpty()) {
+        if (codigo != null && !listaProdutos.isEmpty()) {
             for (int i = 0; i < listaProdutos.size(); i++) {
-                if (listaProdutos.get(i) != null && listaProdutos.get(i).getCodigo()== id) {
+                if (listaProdutos.get(i) != null && listaProdutos.get(i).getCodigo()== codigo) {
                     return listaProdutos.get(i);
-                }                
+                }
             }
         }
         return null;
