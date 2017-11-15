@@ -234,4 +234,8 @@ public class TelaEditarProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel labelNumero;
     private javax.swing.JLabel labelTipo;
     // End of variables declaration//GEN-END:variables
+
+    void setProduto(Produto pro) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

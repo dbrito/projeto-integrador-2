@@ -21,7 +21,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private TelaCadastrarCliente cadastrarCliente = null;
     private TelaConsultarClientes consultarClientes = null;
     private TelaCadastrarProduto cadastrarProduto = null;
-    private TelaConsultarProduto consultarQuartos = null;
+    private TelaConsultarProduto consultarProduto = null;
 
     /**
      * Construtor e inicialização de componentes
@@ -59,11 +59,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public TelaConsultarProduto getConsultarQuartos() {
-        return consultarQuartos;
+        return consultarProduto;
     }
 
     public void setConsultarQuartos(TelaConsultarProduto consultarQuartos) {
-        this.consultarQuartos = consultarQuartos;
+        this.consultarProduto = consultarQuartos;
     }
 
     /**
@@ -237,12 +237,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void menuConsultarQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarQuartosActionPerformed
         //Verifica se não há uma janela de consulta de quartos visível.
         //Caso afirmativo, cria uma janela de consulta de quartos e a exibe
-        if (consultarQuartos == null || !consultarQuartos.isDisplayable()) {
-            consultarQuartos = new TelaConsultarProduto();
-            desktop.add(consultarQuartos);
-            this.openFrameInCenter(consultarQuartos);
+        if (consultarProduto == null || !consultarProduto.isDisplayable()) {
+            consultarProduto = new TelaConsultarProduto();
+            desktop.add(consultarProduto);
+            this.openFrameInCenter(consultarProduto);
         }
-        consultarQuartos.toFront();
+        consultarProduto.toFront();
     }//GEN-LAST:event_menuConsultarQuartosActionPerformed
 
     //Listener do item de menu

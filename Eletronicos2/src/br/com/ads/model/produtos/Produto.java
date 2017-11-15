@@ -10,7 +10,7 @@ public class Produto {
     private double preço;
     private int quantidade;
     private String categoria;
-    private String descrição;
+   
 
     
     //Métodos de acesso
@@ -61,14 +61,6 @@ public class Produto {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public String getDescrição() {
-        return descrição;
-    }
-
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
     }
    
 }
