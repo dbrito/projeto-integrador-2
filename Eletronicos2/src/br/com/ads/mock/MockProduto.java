@@ -5,23 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-//Mock de Produto. Realiza operações de mock com o produto
 public class MockProduto {
     private static int totalProdutos = 0;
-    /** Armazena a lista de produtos inseridos para manipulação. #MOCK **/    
     private static List<Produto> listaProdutos = new ArrayList<Produto>();
 
-    //Insere um produto no mock "produto"
-    public static void inserir(Produto pro)
-            throws Exception {
-        //pro.setCodigo(totalProdutos++);
+    //Insere um produto
+    public static void inserir(Produto pro) throws Exception {
         listaProdutos.add(pro);
     }
 
-    //Realiza a atualização dos dados de um produto, com ID e dados
-    //fornecidos como parâmetro através de um objeto da classe "Produto"
-    public static void atualizar(Produto produtoProcura)
-            throws Exception {
+    //Realiza a atualização dos dados de um produto
+    public static void atualizar(Produto produtoProcura) throws Exception {
         if (produtoProcura != null && produtoProcura.getCodigo()!= null && !listaProdutos.isEmpty()) {
             for (Produto produto : listaProdutos) {
                 if (produto != null && produto.getCodigo()== produtoProcura.getCodigo()) {
@@ -29,7 +23,7 @@ public class MockProduto {
                     produto.setMarca(produtoProcura.getMarca());
                     produto.setPreco(produtoProcura.getPreco());
                     produto.setQuantidade(produtoProcura.getQuantidade());
-                    produto.setCategoria(produtoProcura.getCategoria());                                        
+                    produto.setCategoria(produtoProcura.getCategoria());
                     produto.setDescrição(produtoProcura.getDescricao());
                     break;
                 }
@@ -37,8 +31,7 @@ public class MockProduto {
         }
     }
 
-    //Realiza a exclusão de um cliente no mock, com ID fornecido
-    //como parâmetro.
+    //Realiza a exclusão de um produto
     public static void excluir(String codigo) throws Exception {
         if (codigo != null && !listaProdutos.isEmpty()) {
             for (int i = 0; i < listaProdutos.size(); i++) {
@@ -52,18 +45,15 @@ public class MockProduto {
     }
 
     //Lista todos os produtos
-    public static List<Produto> listar()
-            throws Exception {        
-        //Retorna a lista de produtos 
+    public static List<Produto> listar() throws Exception {
+        //Retorna a lista de produtos
         return listaProdutos;
     }
 
-    //Procura um produto na lista, de acordo com o numero
-    //do produto passado como parâmetro
-    public static List<Produto> procurar(String termo)
-            throws Exception {
+    //Procura um produto na lista, de acordo com o termo repassado como parametro
+    public static List<Produto> procurar(String termo) throws Exception {
         List<Produto> listaResultado = new ArrayList<Produto>();
-        
+
         if (termo != null && !listaProdutos.isEmpty()) {
             for (Produto produtoLi : listaProdutos) {
                 if (produtoLi != null && produtoLi.getCodigo()!= null &&
@@ -75,14 +65,12 @@ public class MockProduto {
                 }
             }
         }
-        
-        //Retorna a lista de clientes encontrados
+
         return listaResultado;
     }
 
     //Obtém um produto da lista
-    public static Produto obter(String codigo)
-            throws Exception {
+    public static Produto obter(String codigo) throws Exception {
         if (codigo != null && !listaProdutos.isEmpty()) {
             for (int i = 0; i < listaProdutos.size(); i++) {
                 if (listaProdutos.get(i) != null && listaProdutos.get(i).getCodigo()== codigo) {

@@ -1,9 +1,8 @@
 package br.com.ads.ui.principal;
 
-import br.com.ads.ui.clientes.TelaCadastrarCliente;
-import br.com.ads.ui.clientes.TelaConsultarClientes;
-import br.com.ads.ui.produtos.TelaCadastrarProduto;
-import br.com.ads.ui.produtos.TelaConsultarProdutos;
+import br.com.ads.ui.clientes.*;
+import br.com.ads.ui.produtos.*;
+import br.com.ads.ui.vendas.*;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -17,11 +16,11 @@ import javax.swing.JOptionPane;
  * Tela principal do sistema
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
     private TelaCadastrarCliente cadastrarCliente = null;
     private TelaConsultarClientes consultarClientes = null;
     private TelaCadastrarProduto cadastrarProduto = null;
-    private TelaConsultarProdutos consultarQuartos = null;
+    private TelaConsultarProdutos consultarProdutos = null;
+    private TelaSelecionarProdutos selecionarProdutos = null;
 
     /**
      * Construtor e inicialização de componentes
@@ -46,7 +45,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public TelaConsultarProdutos getConsultarProdutos() {
-        return consultarQuartos;
+        return consultarProdutos;
     }
 
     /**
@@ -79,9 +78,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuPrincipal = new javax.swing.JMenu();
         menuCadastrarProduto = new javax.swing.JMenuItem();
         menuConsultarProduto = new javax.swing.JMenuItem();
-        menuReserva = new javax.swing.JMenu();
-        menuFazerReserva = new javax.swing.JMenuItem();
-        menuRelatorioReservas = new javax.swing.JMenuItem();
+        menuVenda = new javax.swing.JMenu();
+        menuRealizarVenda = new javax.swing.JMenuItem();
+        menuRelatorioVendas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Loja de Eletrônicos");
@@ -142,25 +141,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         barraMenus.add(menuPrincipal);
 
-        menuReserva.setText("Venda");
+        menuVenda.setText("Venda");
 
-        menuFazerReserva.setText("Realizar Venda");
-        menuFazerReserva.addActionListener(new java.awt.event.ActionListener() {
+        menuRealizarVenda.setText("Realizar Venda");
+        menuRealizarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuFazerReservaActionPerformed(evt);
+                menuRealizarVendaActionPerformed(evt);
             }
         });
-        menuReserva.add(menuFazerReserva);
+        menuVenda.add(menuRealizarVenda);
 
-        menuRelatorioReservas.setText("Relatório de Vendas");
-        menuRelatorioReservas.addActionListener(new java.awt.event.ActionListener() {
+        menuRelatorioVendas.setText("Relatório de Vendas");
+        menuRelatorioVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuRelatorioReservasActionPerformed(evt);
+                menuRelatorioVendasActionPerformed(evt);
             }
         });
-        menuReserva.add(menuRelatorioReservas);
+        menuVenda.add(menuRelatorioVendas);
 
-        barraMenus.add(menuReserva);
+        barraMenus.add(menuVenda);
 
         setJMenuBar(barraMenus);
 
@@ -220,23 +219,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void menuConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarProdutoActionPerformed
         //Verifica se não há uma janela de consulta de produtos visível.
         //Caso afirmativo, cria uma janela de consulta de produtos e a exibe
-        if (consultarQuartos == null || !consultarQuartos.isDisplayable()) {
-            consultarQuartos = new TelaConsultarProdutos();
-            desktop.add(consultarQuartos);
-            this.openFrameInCenter(consultarQuartos);
+        if (consultarProdutos == null || !consultarProdutos.isDisplayable()) {
+            consultarProdutos = new TelaConsultarProdutos();
+            desktop.add(consultarProdutos);
+            this.openFrameInCenter(consultarProdutos);
         }
-        consultarQuartos.toFront();
+        consultarProdutos.toFront();
     }//GEN-LAST:event_menuConsultarProdutoActionPerformed
 
     //Listener do item de menu
-    private void menuFazerReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFazerReservaActionPerformed
-
-    }//GEN-LAST:event_menuFazerReservaActionPerformed
+    private void menuRealizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRealizarVendaActionPerformed
+        //Verifica se não há uma janela de consulta de produtos visível.
+        //Caso afirmativo, cria uma janela de consulta de produtos e a exibe
+        if (selecionarProdutos == null || !selecionarProdutos.isDisplayable()) {
+            selecionarProdutos = new TelaSelecionarProdutos();
+            desktop.add(selecionarProdutos);
+            this.openFrameInCenter(selecionarProdutos);
+        }
+        selecionarProdutos.toFront();
+    }//GEN-LAST:event_menuRealizarVendaActionPerformed
 
     //Listener do item de menu
-    private void menuRelatorioReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioReservasActionPerformed
+    private void menuRelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioVendasActionPerformed
 
-    }//GEN-LAST:event_menuRelatorioReservasActionPerformed
+    }//GEN-LAST:event_menuRelatorioVendasActionPerformed
 
     //Abre um internal frame centralizado na tela
     public void openFrameInCenter(JInternalFrame jif) {
@@ -291,9 +297,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuCliente;
     private javax.swing.JMenuItem menuConsultarCliente;
     private javax.swing.JMenuItem menuConsultarProduto;
-    private javax.swing.JMenuItem menuFazerReserva;
     private javax.swing.JMenu menuPrincipal;
-    private javax.swing.JMenuItem menuRelatorioReservas;
-    private javax.swing.JMenu menuReserva;
+    private javax.swing.JMenuItem menuRealizarVenda;
+    private javax.swing.JMenuItem menuRelatorioVendas;
+    private javax.swing.JMenu menuVenda;
     // End of variables declaration//GEN-END:variables
 }

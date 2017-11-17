@@ -50,25 +50,25 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuReserva">
+        <Menu class="javax.swing.JMenu" name="menuVenda">
           <Properties>
             <Property name="text" type="java.lang.String" value="Venda"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuFazerReserva">
+            <MenuItem class="javax.swing.JMenuItem" name="menuRealizarVenda">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Realizar Venda"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuFazerReservaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuRealizarVendaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuRelatorioReservas">
+            <MenuItem class="javax.swing.JMenuItem" name="menuRelatorioVendas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Vendas"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuRelatorioReservasActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuRelatorioVendasActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
