@@ -23,7 +23,7 @@ public class TelaEditarProduto extends javax.swing.JInternalFrame {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
-    }   
+    }
 
     /**
      * Método criado pelo GUI Builder para montagem da tela
@@ -176,10 +176,10 @@ public class TelaEditarProduto extends javax.swing.JInternalFrame {
         produto.setMarca(fieldMarca.getText());
         produto.setCategoria((String) comboCategoria.getSelectedItem());
         produto.setDescrição(fieldDescricao.getText());
-        
+
         try {
             Float preco = Float.parseFloat(fieldPreco.getText()) ;
-            produto.setPreco(preco);            
+            produto.setPreco(preco);
             Integer quantidade = Integer.parseInt(fieldQuantidade.getText());
             produto.setQuantidade(quantidade);
         } catch (Exception e) {
@@ -192,8 +192,8 @@ public class TelaEditarProduto extends javax.swing.JInternalFrame {
             //Exibe mensagens de erro para o usuário
             JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return;
-        }        
-        
+        }
+
         //Atualiza a tela de consulta de clientes, caso possível. Para isso,
         //obtém o "top level ancestor" (ou seja, o componente pai mais acima
         //do formulário, no nosso caso, o desktop) para conseguir o frame
@@ -203,7 +203,7 @@ public class TelaEditarProduto extends javax.swing.JInternalFrame {
             if (this.getDesktopPane().getTopLevelAncestor() instanceof TelaPrincipal) {
                 TelaPrincipal principal = (TelaPrincipal) this.getDesktopPane().getTopLevelAncestor();
                 if (principal != null) {
-                    principal.getConsultarQuartos().refreshList();                
+                    principal.getConsultarProdutos().refreshList();
                 }
             }
         }
@@ -217,7 +217,7 @@ public class TelaEditarProduto extends javax.swing.JInternalFrame {
         //Então exibe uma mensagem de sucesso para o usuário
         JOptionPane.showMessageDialog(rootPane, "Produto atualizado com sucesso", "Cadastro efetuado", JOptionPane.INFORMATION_MESSAGE);
 
-        //Limpa os campos da tela após realizar a ataulização        
+        //Limpa os campos da tela após realizar a ataulização
         fieldNome.setText("");
         fieldPreco.setText("");
         fieldMarca.setText("");
@@ -233,7 +233,7 @@ public class TelaEditarProduto extends javax.swing.JInternalFrame {
         fieldPreco.setText(String.valueOf(produto.getPreco()));
         fieldQuantidade.setText(String.valueOf(produto.getQuantidade()));
         fieldDescricao.setText(produto.getDescricao());
-                
+
         for (int i = 0; i < comboCategoria.getItemCount(); i++) {
             if (comboCategoria.getItemAt(i).equals(produto.getCategoria())) {
                 comboCategoria.setSelectedIndex(i);

@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Tela de consulta de produtos
  */
-public class TelaConsultarProduto extends javax.swing.JInternalFrame {
+public class TelaConsultarProdutos extends javax.swing.JInternalFrame {
 
     //Instância do form de edição de produtos
     TelaEditarProduto formEditarProduto = new TelaEditarProduto();
@@ -20,7 +20,7 @@ public class TelaConsultarProduto extends javax.swing.JInternalFrame {
     /**
      * Construtor e inicialização de componentes
      */
-    public TelaConsultarProduto() {
+    public TelaConsultarProdutos() {
         initComponents();
     }
 

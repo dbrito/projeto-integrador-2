@@ -3,7 +3,7 @@ package br.com.ads.ui.principal;
 import br.com.ads.ui.clientes.TelaCadastrarCliente;
 import br.com.ads.ui.clientes.TelaConsultarClientes;
 import br.com.ads.ui.produtos.TelaCadastrarProduto;
-import br.com.ads.ui.produtos.TelaConsultarProduto;
+import br.com.ads.ui.produtos.TelaConsultarProdutos;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -21,13 +21,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private TelaCadastrarCliente cadastrarCliente = null;
     private TelaConsultarClientes consultarClientes = null;
     private TelaCadastrarProduto cadastrarProduto = null;
-    private TelaConsultarProduto consultarQuartos = null;
+    private TelaConsultarProdutos consultarQuartos = null;
 
     /**
      * Construtor e inicialização de componentes
      */
     public TelaPrincipal() {
-
         initComponents();
         //Faz com que a janela seja aberta no meio da tela
         this.setLocationRelativeTo(null);
@@ -38,32 +37,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         return cadastrarCliente;
     }
 
-    public void setCadastrarCliente(TelaCadastrarCliente cadastrarCliente) {
-        this.cadastrarCliente = cadastrarCliente;
-    }
-
     public TelaConsultarClientes getConsultarClientes() {
         return consultarClientes;
-    }
-
-    public void setConsultarClientes(TelaConsultarClientes consultarClientes) {
-        this.consultarClientes = consultarClientes;
     }
 
     public TelaCadastrarProduto getCadastrarProduto() {
         return cadastrarProduto;
     }
 
-    public void setCadastrarQuarto(TelaCadastrarProduto cadastrarProduto) {
-        this.cadastrarProduto = cadastrarProduto;
-    }
-
-    public TelaConsultarProduto getConsultarQuartos() {
+    public TelaConsultarProdutos getConsultarProdutos() {
         return consultarQuartos;
-    }
-
-    public void setConsultarQuartos(TelaConsultarProduto consultarQuartos) {
-        this.consultarQuartos = consultarQuartos;
     }
 
     /**
@@ -93,9 +76,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCliente = new javax.swing.JMenu();
         menuCadastrarCliente = new javax.swing.JMenuItem();
         menuConsultarCliente = new javax.swing.JMenuItem();
-        menuQuarto = new javax.swing.JMenu();
-        menuCadastrarQuarto = new javax.swing.JMenuItem();
-        menuConsultarQuartos = new javax.swing.JMenuItem();
+        menuPrincipal = new javax.swing.JMenu();
+        menuCadastrarProduto = new javax.swing.JMenuItem();
+        menuConsultarProduto = new javax.swing.JMenuItem();
         menuReserva = new javax.swing.JMenu();
         menuFazerReserva = new javax.swing.JMenuItem();
         menuRelatorioReservas = new javax.swing.JMenuItem();
@@ -139,25 +122,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         barraMenus.add(menuCliente);
 
-        menuQuarto.setText("Produto");
+        menuPrincipal.setText("Produto");
 
-        menuCadastrarQuarto.setText("Cadastrar Produto");
-        menuCadastrarQuarto.addActionListener(new java.awt.event.ActionListener() {
+        menuCadastrarProduto.setText("Cadastrar Produto");
+        menuCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCadastrarQuartoActionPerformed(evt);
+                menuCadastrarProdutoActionPerformed(evt);
             }
         });
-        menuQuarto.add(menuCadastrarQuarto);
+        menuPrincipal.add(menuCadastrarProduto);
 
-        menuConsultarQuartos.setText("Consultar Produto");
-        menuConsultarQuartos.addActionListener(new java.awt.event.ActionListener() {
+        menuConsultarProduto.setText("Consultar Produto");
+        menuConsultarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuConsultarQuartosActionPerformed(evt);
+                menuConsultarProdutoActionPerformed(evt);
             }
         });
-        menuQuarto.add(menuConsultarQuartos);
+        menuPrincipal.add(menuConsultarProduto);
 
-        barraMenus.add(menuQuarto);
+        barraMenus.add(menuPrincipal);
 
         menuReserva.setText("Venda");
 
@@ -220,7 +203,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuConsultarClienteActionPerformed
 
     //Listener do item de menu
-    private void menuCadastrarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarQuartoActionPerformed
+    private void menuCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarProdutoActionPerformed
         //Verifica se não há uma janela de cadastro de produtos visível.
         //Caso afirmativo, cria uma janela de cadastro de produtos e a exibe
         System.out.println((cadastrarProduto == null || !cadastrarProduto.isDisplayable()));
@@ -228,22 +211,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
             cadastrarProduto = new TelaCadastrarProduto();
             desktop.add(cadastrarProduto);
             this.openFrameInCenter(cadastrarProduto);
-           
+
         }
         cadastrarProduto.toFront();
-    }//GEN-LAST:event_menuCadastrarQuartoActionPerformed
+    }//GEN-LAST:event_menuCadastrarProdutoActionPerformed
 
     //Listener do item de menu
-    private void menuConsultarQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarQuartosActionPerformed
+    private void menuConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarProdutoActionPerformed
         //Verifica se não há uma janela de consulta de produtos visível.
         //Caso afirmativo, cria uma janela de consulta de produtos e a exibe
         if (consultarQuartos == null || !consultarQuartos.isDisplayable()) {
-            consultarQuartos = new TelaConsultarProduto();
+            consultarQuartos = new TelaConsultarProdutos();
             desktop.add(consultarQuartos);
             this.openFrameInCenter(consultarQuartos);
         }
         consultarQuartos.toFront();
-    }//GEN-LAST:event_menuConsultarQuartosActionPerformed
+    }//GEN-LAST:event_menuConsultarProdutoActionPerformed
 
     //Listener do item de menu
     private void menuFazerReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFazerReservaActionPerformed
@@ -272,7 +255,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -304,12 +287,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar barraMenus;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JMenuItem menuCadastrarCliente;
-    private javax.swing.JMenuItem menuCadastrarQuarto;
+    private javax.swing.JMenuItem menuCadastrarProduto;
     private javax.swing.JMenu menuCliente;
     private javax.swing.JMenuItem menuConsultarCliente;
-    private javax.swing.JMenuItem menuConsultarQuartos;
+    private javax.swing.JMenuItem menuConsultarProduto;
     private javax.swing.JMenuItem menuFazerReserva;
-    private javax.swing.JMenu menuQuarto;
+    private javax.swing.JMenu menuPrincipal;
     private javax.swing.JMenuItem menuRelatorioReservas;
     private javax.swing.JMenu menuReserva;
     // End of variables declaration//GEN-END:variables
