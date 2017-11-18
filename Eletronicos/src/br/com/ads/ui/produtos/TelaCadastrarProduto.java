@@ -36,7 +36,7 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         fieldQuantidade = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        comboCategoria = new javax.swing.JComboBox<String>();
+        comboCategoria = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         fieldDescricao = new javax.swing.JTextField();
 
@@ -72,7 +72,7 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Categoria:");
 
-        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TVs", "Audio", "SmarthPhone", "Consoles", " ", " ", " " }));
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TVs", "Audio", "SmarthPhone", "Consoles", " ", " ", " " }));
 
         jLabel5.setText("Descrição:");
 

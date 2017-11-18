@@ -2,7 +2,10 @@ package br.com.ads.ui.vendas;
 
 import br.com.ads.model.clientes.Cliente;
 import br.com.ads.exceptions.ClienteException;
+import br.com.ads.model.vendas.ItemVenda;
 import br.com.ads.service.cliente.ServicoCliente;
+import br.com.ads.service.produto.ServicoProduto;
+import br.com.ads.ui.principal.TelaPrincipal;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JInternalFrame;
@@ -70,11 +73,6 @@ public class TelaSelecionarCliente extends javax.swing.JInternalFrame {
             }
         });
         tabelaResultados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tabelaResultados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaResultadosMouseClicked(evt);
-            }
-        });
         tabelaResultadosScroll.setViewportView(tabelaResultados);
 
         buttonCancelar.setText("Fechar");
@@ -170,8 +168,7 @@ public class TelaSelecionarCliente extends javax.swing.JInternalFrame {
     public boolean refreshList() throws ClienteException, Exception {
         //Realiza a pesquisa de clientes com o último valor de pesquisa
         //para atualizar a lista
-        List<Cliente> resultado = ServicoCliente.
-                procurarCliente(ultimaPesquisa);
+        List<Cliente> resultado = ServicoCliente.procurarCliente(ultimaPesquisa);
 
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tabelaResultados.getModel();
@@ -203,44 +200,6 @@ public class TelaSelecionarCliente extends javax.swing.JInternalFrame {
         return true;
     }
 
-    //Trata os cliques na tabela de resultados de pesquisa de clientes
-    private void tabelaResultadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaResultadosMouseClicked
-        //Verifica se o clique é um clique duplo       
-        if (evt.getClickCount() == 2) {
-            try {                
-                //Obtém a linha selecionada da tabela de resultados
-                final int row = tabelaResultados.getSelectedRow();
-                //Obtém o valor do ID da coluna "ID" da tabela de resultados
-                Integer id = (Integer) tabelaResultados.getValueAt(row, 0);
-                
-                //Com o ID da coluna, chama o serviço de cliente para
-                //obter o cliente com dados atualizados do mock
-                Cliente cliente = ServicoCliente.obterCliente(id);
-
-                //Cria uma nova instância da tela de edição,
-                //configura o cliente selecionado como elemento a
-                //ser editado e mostra a tela de edição.
-                //Para exibir a tela, é necessário adicioná-la ao
-                //componente de desktop, o "pai" da janela corrente
-                //formEditarCliente.dispose();
-                //formEditarCliente = new TelaEditarCliente();
-                //formEditarCliente.setCliente(cliente);
-                //formEditarCliente.setTitle(cliente.getNome());
-                //this.getParent().add(formEditarCliente);
-                //this.openFrameInCenter(formEditarCliente);                
-                //formEditarCliente.toFront();
-            } catch (Exception e) {
-                //Se ocorrer algum erro técnico, mostra-o no console,
-                //mas esconde-o do usuário
-                e.printStackTrace();
-                //Exibe uma mensagem de erro genérica ao usuário
-                JOptionPane.showMessageDialog(rootPane, "Não é possível "
-                    + "exibir os detalhes deste cliente.",
-                    "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_tabelaResultadosMouseClicked
-
     //Listener do botão cancelar
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         this.dispose();
@@ -255,32 +214,19 @@ public class TelaSelecionarCliente extends javax.swing.JInternalFrame {
             if (row >= 0) {
                 //Obtém a linha selecionada na tabela
                 Integer id = (Integer) tabelaResultados.getValueAt(row, 0);
-                
-                //Solicita ao serviço a obtenção do cliente a partir do
-                //ID selecionado na tabela
                 Cliente cliente = ServicoCliente.obterCliente(id);
-
-                //Cria uma nova instância da tela de edição,
-                //configura o cliente selecionado como elemento a
-                //ser editado e mostra a tela de edição.
-                //Para exibir a tela, é necessário adicioná-la ao
-                //componente de desktop, o "pai" da janela corrente
-                //formEditarCliente.dispose();
-                //formEditarCliente = new TelaEditarCliente();
-                //formEditarCliente.setCliente(cliente);
-                //formEditarCliente.setTitle(cliente.getNome());
-                //this.getParent().add(formEditarCliente);
-                //this.openFrameInCenter(formEditarCliente);                
-                //formEditarCliente.toFront();
+                
+                if (this.getDesktopPane().getTopLevelAncestor() instanceof TelaPrincipal) {
+                    TelaPrincipal principal = (TelaPrincipal) this.getDesktopPane().getTopLevelAncestor();
+                    if (principal != null) {                    
+                        principal.getRealizaVenda().defineCliente(cliente);
+                        this.dispose();
+                    }
+                }                
             }
         } catch (Exception e) {
-            //Se ocorrer algum erro técnico, mostra-o no console,
-            //mas esconde-o do usuário
             e.printStackTrace();
-            //Exibe uma mensagem de erro genérica ao usuário
-            JOptionPane.showMessageDialog(rootPane, "Não é possível "
-                + "exibir os detalhes deste cliente.",
-                "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Não é possível " + "exibir os detalhes deste cliente.", "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonSelecionarActionPerformed
 

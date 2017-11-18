@@ -9,7 +9,7 @@ import java.util.List;
 public class Venda {
 
     //Atributos
-    private List<Produto> listaProdutos;
+    private List<ItemVenda> listaItens = new ArrayList<ItemVenda>();
     private Cliente cliente;
     private Date data;
     private Integer id;
@@ -27,7 +27,7 @@ public class Venda {
         return data;
     }
 
-    public void setId(Date data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
@@ -39,12 +39,12 @@ public class Venda {
         this.cliente = cliente;
     }
     
-    public List<Produto> getProdutos() {
-        return listaProdutos;
+    public List<ItemVenda> getItens() {
+        return listaItens;
     }
 
-    public void setCliente(List<Produto> produtos) {
-        this.listaProdutos = produtos;
+    public void addItem(ItemVenda item) {
+        listaItens.add(item);
     }
           
 }

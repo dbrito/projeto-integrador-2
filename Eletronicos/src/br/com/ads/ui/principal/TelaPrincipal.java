@@ -21,6 +21,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private TelaCadastrarProduto cadastrarProduto = null;
     private TelaConsultarProdutos consultarProdutos = null;
     private TelaSelecionarProdutos selecionarProdutos = null;
+    private TelaRealizarVenda realizarVenda = null;
 
     /**
      * Construtor e inicialização de componentes
@@ -46,6 +47,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaConsultarProdutos getConsultarProdutos() {
         return consultarProdutos;
+    }
+    
+    public TelaRealizarVenda getRealizaVenda() {
+        return realizarVenda;
     }
 
     /**
@@ -231,12 +236,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void menuRealizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRealizarVendaActionPerformed
         //Verifica se não há uma janela de consulta de produtos visível.
         //Caso afirmativo, cria uma janela de consulta de produtos e a exibe
-        if (selecionarProdutos == null || !selecionarProdutos.isDisplayable()) {
-            selecionarProdutos = new TelaSelecionarProdutos();
-            desktop.add(selecionarProdutos);
-            this.openFrameInCenter(selecionarProdutos);
+        if (realizarVenda == null || !realizarVenda.isDisplayable()) {
+            realizarVenda = new TelaRealizarVenda();
+            desktop.add(realizarVenda);
+            this.openFrameInCenter(realizarVenda);
         }
-        selecionarProdutos.toFront();
+        realizarVenda.toFront();
     }//GEN-LAST:event_menuRealizarVendaActionPerformed
 
     //Listener do item de menu

@@ -2,7 +2,9 @@ package br.com.ads.ui.vendas;
 
 import br.com.ads.exceptions.ProdutoException;
 import br.com.ads.model.produtos.Produto;
+import br.com.ads.model.vendas.ItemVenda;
 import br.com.ads.service.produto.ServicoProduto;
+import br.com.ads.ui.principal.TelaPrincipal;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JInternalFrame;
@@ -45,14 +47,15 @@ public class TelaSelecionarProdutos extends javax.swing.JInternalFrame {
 
         //Percorre a lista de resultados e os adiciona na tabela
         for (int i = 0; i < resultado.size(); i++) {
-            Produto cli = resultado.get(i);
-            if (cli != null) {
-                Object[] row = new Object[5];
-                row[0] = cli.getCodigo();
-                row[1] = cli.getNome();
-                row[2] = cli.getMarca();
-                row[3] = cli.getCategoria();
-                row[4] = String.valueOf(cli.getPreco());
+            Produto prd = resultado.get(i);
+            if (prd != null) {
+                Object[] row = new Object[6];
+                row[0] = prd.getCodigo();
+                row[1] = prd.getNome();
+                row[2] = prd.getMarca();
+                row[3] = prd.getCategoria();
+                row[4] = String.valueOf(prd.getPreco());
+                row[5] = 1;
                 model.addRow(row);
             }
         }
@@ -61,43 +64,6 @@ public class TelaSelecionarProdutos extends javax.swing.JInternalFrame {
         //retornamos "true" para o elemento acionante, indicando
         //que não devem ser exibidas mensagens de erro
         return true;
-    }
-
-    private void editaProduto() {
-        try {
-            //Obtém a linha selecionada na tabela de resultados
-            final int row = tabelaResultados.getSelectedRow();
-            //Verifica se há linha selecionada na tabela
-            if (row >= 0) {
-                //Obtém a linha selecionada na tabela
-                String codigo = (String) tabelaResultados.getValueAt(row, 0);
-
-                //Solicita ao serviço a obtenção do produto a partir do
-                //ID selecionado na tabela
-                Produto pro = ServicoProduto.obterProduto(codigo);
-
-                //Cria uma nova instância da tela de edição,
-                //configura o produto selecionado como elemento a
-                //ser editado e mostra a tela de edição.
-                //Para exibir a tela, é necessário adicioná-la ao
-                //componente de desktop, o "pai" da janela corrente
-                //formEditarProduto.dispose();
-                //formEditarProduto = new TelaEditarProduto();
-                //formEditarProduto.setProduto(pro);
-                //formEditarProduto.setTitle("Produto: " + pro.getNome());
-                //this.getParent().add(formEditarProduto);
-                //this.openFrameInCenter(formEditarProduto);
-                //formEditarProduto.toFront();
-            }
-        } catch (Exception e) {
-            //Se ocorrer algum erro técnico, mostra-o no console,
-            //mas esconde-o do usuário
-            e.printStackTrace();
-            //Exibe uma mensagem de erro genérica ao usuário
-            JOptionPane.showMessageDialog(rootPane, "Não é possível "
-                + "exibir os detalhes deste produto.",
-                "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
-        }
     }
 
     /**
@@ -129,14 +95,14 @@ public class TelaSelecionarProdutos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Códgio", "Nome", "Marca", "Categoria", "Preco"
+                "Códgio", "Nome", "Marca", "Categoria", "Preco", "Quantidade"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -147,12 +113,7 @@ public class TelaSelecionarProdutos extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaResultados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tabelaResultados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaResultadosMouseClicked(evt);
-            }
-        });
+        tabelaResultados.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         scrollTabelaResultados.setViewportView(tabelaResultados);
 
         buttonFechar.setText("Fechar");
@@ -222,15 +183,25 @@ public class TelaSelecionarProdutos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonFecharActionPerformed
 
     private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
-        editaProduto();
-    }//GEN-LAST:event_buttonSelecionarActionPerformed
-
-    private void tabelaResultadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaResultadosMouseClicked
-        //Verifica se o clique é um clique duplo
-        if (evt.getClickCount() == 2) {
-            editaProduto();
+        try {
+            if (this.getDesktopPane().getTopLevelAncestor() instanceof TelaPrincipal) {
+                TelaPrincipal principal = (TelaPrincipal) this.getDesktopPane().getTopLevelAncestor();
+                if (principal != null) {                    
+                    int[] meuk = tabelaResultados.getSelectedRows();
+                    for (int i : meuk) {
+                        ItemVenda item = new ItemVenda();                                                                        
+                        item.setProduto(ServicoProduto.obterProduto((String)tabelaResultados.getValueAt(i, 0)));
+                        item.setQuantidade((Integer)tabelaResultados.getValueAt(i, 5));                        
+                        principal.getRealizaVenda().adicionaItem(item);
+                        this.dispose();
+                    }                                                                                
+                }
+            }
         }
-    }//GEN-LAST:event_tabelaResultadosMouseClicked
+        catch(Exception e) {
+            e.printStackTrace();
+        }        
+    }//GEN-LAST:event_buttonSelecionarActionPerformed
 
     private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
         Boolean resultSearch;
@@ -238,16 +209,13 @@ public class TelaSelecionarProdutos extends javax.swing.JInternalFrame {
             resultSearch = refreshList();
         } catch (Exception e) {
             //Exibe mensagens de erro na fonte de dados e para o listener
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         //Exibe mensagem de erro caso a pesquisa não tenha resultados
         if (!resultSearch) {
-            JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou "
-                + "resultados ", "Sem resultados",
-                JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou " + "resultados ", "Sem resultados", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonPesquisarActionPerformed
 

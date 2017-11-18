@@ -271,8 +271,7 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
 
         //Caso tenha chegado até aqui, o cliente foi inserido com sucesso
         //Então exibe uma mensagem de sucesso para o usuário
-        JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso",
-                "Cadastro efetuado", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso", "Cadastro efetuado", JOptionPane.INFORMATION_MESSAGE);
 
         //Limpa os campos da tela após realizar a inserção
         fieldNome.setText("");

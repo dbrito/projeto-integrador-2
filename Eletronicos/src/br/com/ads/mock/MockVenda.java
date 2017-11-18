@@ -2,6 +2,7 @@ package br.com.ads.mock;
 
 import br.com.ads.model.vendas.Venda;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ public class MockVenda {
     //Insere uma venda
     public static void inserir(Venda venda) throws Exception {
         venda.setId(totalVendas++);
+        venda.setData(new Date());
         listaVendas.add(venda);
     }
 
