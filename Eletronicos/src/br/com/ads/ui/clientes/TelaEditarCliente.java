@@ -276,7 +276,7 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
         
         try {
             DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
-            Date dt = df.parse (fieldDataNascimento.getText());
+            Date dt = df.parse(fieldDataNascimento.getText());
             cliente.setDataNascimento(dt);
         } catch (Exception e) {
             System.out.print(e);
@@ -299,10 +299,8 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
         //de consulta e daí solicitar a atualização da lista através da
         //chamada de seu método público de atualização
         try {
-            if (this.getDesktopPane().getTopLevelAncestor()
-                    instanceof TelaPrincipal) {
-                TelaPrincipal principal = (TelaPrincipal) this.
-                        getDesktopPane().getTopLevelAncestor();
+            if (this.getDesktopPane().getTopLevelAncestor() instanceof TelaPrincipal) {
+                TelaPrincipal principal = (TelaPrincipal) this.getDesktopPane().getTopLevelAncestor();
                 if (principal != null) {
                     principal.getConsultarClientes().refreshList();                
                 }
@@ -314,8 +312,7 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
         
-        JOptionPane.showMessageDialog(rootPane, "Cliente atualizado com sucesso",
-                "Cadastro atualizado", JOptionPane.INFORMATION_MESSAGE);        
+        JOptionPane.showMessageDialog(rootPane, "Cliente atualizado com sucesso", "Cadastro atualizado", JOptionPane.INFORMATION_MESSAGE);        
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
@@ -324,7 +321,8 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         fieldNome.setText(cliente.getNome());
         fieldCpf.setText(cliente.getCpf().toString());
-        //fieldDataNascimento.setText(cliente.get);
+        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+        fieldDataNascimento.setText(df.format(cliente.getDataNascimento()));
         fieldEndereco.setText(cliente.getEndereco());
         fieldNumero.setText(cliente.getNumero().toString());
         fieldComplemento.setText(cliente.getComplemento());
@@ -334,14 +332,6 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
         fieldEstado.setText(cliente.getEstado());
         fieldTelefone.setText(cliente.getTelefone().toString());
         fieldEmail.setText(cliente.getEmail());
-        
-        /*fFieldDataNasc.setValue(cliente.getDataNascimento());
-        for (int i = 0; i < comboGenero.getItemCount(); i++) {
-            if (comboGenero.getItemAt(i).equals(cliente.getGenero())) {
-                comboGenero.setSelectedIndex(i);
-                break;
-            }
-        }*/
     }//GEN-LAST:event_formInternalFrameOpened
 
 
