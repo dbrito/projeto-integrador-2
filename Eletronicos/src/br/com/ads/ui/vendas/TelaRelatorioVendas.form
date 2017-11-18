@@ -33,11 +33,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldDataNascimento" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="fieldDataDe" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldDataNascimento2" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="fieldDataAte" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="buttonPesquisar" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -59,10 +59,10 @@
                   <Component id="buttonPesquisar" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="fieldDataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldDataDe" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Group type="103" alignment="3" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldDataNascimento2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldDataAte" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -115,7 +115,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPesquisarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="fieldDataNascimento">
+    <Component class="javax.swing.JFormattedTextField" name="fieldDataDe">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="##/##/####" subtype="-1" type="5"/>
@@ -132,7 +132,7 @@
         <Property name="text" type="java.lang.String" value="At&#xe9;:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="fieldDataNascimento2">
+    <Component class="javax.swing.JFormattedTextField" name="fieldDataAte">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="##/##/####" subtype="-1" type="5"/>

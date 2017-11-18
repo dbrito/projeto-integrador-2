@@ -22,6 +22,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private TelaConsultarProdutos consultarProdutos = null;
     private TelaSelecionarProdutos selecionarProdutos = null;
     private TelaRealizarVenda realizarVenda = null;
+    private TelaRelatorioVendas relatorioVendas = null;
 
     /**
      * Construtor e inicialização de componentes
@@ -51,6 +52,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     public TelaRealizarVenda getRealizaVenda() {
         return realizarVenda;
+    }
+    
+    public TelaRelatorioVendas getRelatorioVendas() {
+        return relatorioVendas;
     }
 
     /**
@@ -246,7 +251,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     //Listener do item de menu
     private void menuRelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioVendasActionPerformed
-
+        if (relatorioVendas == null || !relatorioVendas.isDisplayable()) {
+            relatorioVendas = new TelaRelatorioVendas();
+            desktop.add(relatorioVendas);
+            this.openFrameInCenter(relatorioVendas);
+        }
+        relatorioVendas.toFront();
     }//GEN-LAST:event_menuRelatorioVendasActionPerformed
 
     //Abre um internal frame centralizado na tela

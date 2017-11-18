@@ -3,7 +3,9 @@ package br.com.ads.ui.vendas;
 import br.com.ads.exceptions.ProdutoException;
 import br.com.ads.model.produtos.Produto;
 import br.com.ads.model.vendas.ItemVenda;
+import br.com.ads.model.vendas.Venda;
 import br.com.ads.service.produto.ServicoProduto;
+import br.com.ads.service.venda.ServicoVenda;
 import br.com.ads.ui.principal.TelaPrincipal;
 import java.awt.Dimension;
 import java.text.DateFormat;
@@ -15,24 +17,20 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- * Tela de consulta de produtos
- */
 public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
 
-    //Instância do form de edição de produtos
-    //TelaEditarProduto formEditarProduto = new TelaEditarProduto();
-
-    /**
-     * Construtor e inicialização de componentes
-     */
     public TelaRelatorioVendas() {
         initComponents();
+        try {
+            refreshList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }        
     }
 
-    //Atualiza a lista de produtos. Pode ser chamado por outras telas
+    //Atualiza a lista de vendas
     public boolean refreshList() throws ProdutoException, Exception {
-        Date de, ate;
+        Date de=null,ate=null;
         
         try {
             DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -44,8 +42,13 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
 
         //Realiza a pesquisa de produtos com o último valor de pesquisa
         //para atualizar a lista
-        String termo = fieldPesquisa.getText().trim();
-        List<Produto> resultado = ServicoProduto.procurarProduto((!termo.equals("") ? termo : null));
+        List<Venda> resultado = null;
+        if (de == null || ate == null) {
+            resultado = ServicoVenda.listarVendas();
+        } else {
+            resultado = ServicoVenda.filtrarVendas(de, ate);
+        }   
+        
 
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tabelaResultados.getModel();
@@ -61,15 +64,13 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
 
         //Percorre a lista de resultados e os adiciona na tabela
         for (int i = 0; i < resultado.size(); i++) {
-            Produto prd = resultado.get(i);
-            if (prd != null) {
-                Object[] row = new Object[6];
-                row[0] = prd.getCodigo();
-                row[1] = prd.getNome();
-                row[2] = prd.getMarca();
-                row[3] = prd.getCategoria();
-                row[4] = NumberFormat.getCurrencyInstance().format(prd.getPreco());
-                row[5] = 1;
+            Venda venda = resultado.get(i);
+            if (venda != null) {
+                Object[] row = new Object[3];
+                DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+                row[0] = df.format(venda.getData());
+                row[1] = venda.getCliente().getNome();
+                row[2] = String.valueOf(NumberFormat.getCurrencyInstance().format(venda.getTotal()));                
                 model.addRow(row);
             }
         }
@@ -91,10 +92,10 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
         tabelaResultados = new javax.swing.JTable();
         buttonFechar = new javax.swing.JButton();
         buttonPesquisar = new javax.swing.JButton();
-        fieldDataNascimento = new javax.swing.JFormattedTextField();
+        fieldDataDe = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        fieldDataNascimento2 = new javax.swing.JFormattedTextField();
+        fieldDataAte = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -144,7 +145,7 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
         });
 
         try {
-            fieldDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            fieldDataDe.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -154,7 +155,7 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
         jLabel7.setText("Até:");
 
         try {
-            fieldDataNascimento2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            fieldDataAte.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -169,11 +170,11 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldDataNascimento2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonPesquisar))
                     .addGroup(layout.createSequentialGroup()
@@ -190,10 +191,10 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
                     .addComponent(buttonPesquisar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
-                        .addComponent(fieldDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(fieldDataNascimento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(fieldDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(scrollTabelaResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
@@ -238,8 +239,8 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonFechar;
     private javax.swing.JButton buttonPesquisar;
-    private javax.swing.JFormattedTextField fieldDataNascimento;
-    private javax.swing.JFormattedTextField fieldDataNascimento2;
+    private javax.swing.JFormattedTextField fieldDataAte;
+    private javax.swing.JFormattedTextField fieldDataDe;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane scrollTabelaResultados;

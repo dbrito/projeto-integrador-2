@@ -46,5 +46,13 @@ public class Venda {
     public void addItem(ItemVenda item) {
         listaItens.add(item);
     }
+    
+    public Double getTotal() {
+        double total=0;        
+        for (ItemVenda i : listaItens) {
+            total += i.getProduto().getPreco() * i.getQuantidade();
+        }        
+        return total;
+    }
           
 }

@@ -25,11 +25,6 @@ public class ValidadorProduto {
 
         if (pro.getQuantidade() <= 0) {
             throw new ProdutoException("Informe a quantidade");
-        }
-
-        if (pro.getDescricao() == null  || pro.getDescricao().trim().equals("")) {
-            throw new ProdutoException("Não foi informado uma Descricao");
-        }
-        
+        }        
     }
 }
