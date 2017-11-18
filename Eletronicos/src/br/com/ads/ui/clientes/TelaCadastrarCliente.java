@@ -264,8 +264,7 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
             ServicoCliente.cadastrarCliente(cliente);
         } catch (Exception e) {
             //Exibe mensagens de erro para o usuário
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 

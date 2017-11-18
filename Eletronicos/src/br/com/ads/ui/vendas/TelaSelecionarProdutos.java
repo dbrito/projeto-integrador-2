@@ -6,6 +6,7 @@ import br.com.ads.model.vendas.ItemVenda;
 import br.com.ads.service.produto.ServicoProduto;
 import br.com.ads.ui.principal.TelaPrincipal;
 import java.awt.Dimension;
+import java.text.NumberFormat;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -54,7 +55,7 @@ public class TelaSelecionarProdutos extends javax.swing.JInternalFrame {
                 row[1] = prd.getNome();
                 row[2] = prd.getMarca();
                 row[3] = prd.getCategoria();
-                row[4] = String.valueOf(prd.getPreco());
+                row[4] = NumberFormat.getCurrencyInstance().format(prd.getPreco());
                 row[5] = 1;
                 model.addRow(row);
             }

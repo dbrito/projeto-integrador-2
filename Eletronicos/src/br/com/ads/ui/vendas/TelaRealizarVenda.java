@@ -8,9 +8,11 @@ import br.com.ads.model.vendas.ItemVenda;
 import br.com.ads.model.vendas.Venda;
 import br.com.ads.service.cliente.ServicoCliente;
 import br.com.ads.service.produto.ServicoProduto;
+import br.com.ads.service.venda.ServicoVenda;
 import br.com.ads.ui.principal.TelaPrincipal;
 import br.com.ads.ui.produtos.TelaEditarProduto;
 import java.awt.Dimension;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -219,15 +221,13 @@ public class TelaRealizarVenda extends javax.swing.JInternalFrame {
                 Produto prd = item.getProduto();
                 Object[] row = new Object[3];
                 row[0] = prd.getNome();
-                row[1] = prd.getPreco();
+                row[1] = NumberFormat.getCurrencyInstance().format(prd.getPreco());
                 row[2] = item.getQuantidade();
                 model.addRow(row);
                 total += prd.getPreco() * item.getQuantidade();
             }
         }
-        lbTotal.setText("Total: R$ " + String.valueOf(total));
-        
-        
+        lbTotal.setText("Total: " + NumberFormat.getCurrencyInstance().format(total));                
         return true;
     }
 
@@ -239,11 +239,15 @@ public class TelaRealizarVenda extends javax.swing.JInternalFrame {
     //Trata o clique no botão de alteração
     private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
         try {
-            MockVenda.inserir(venda);
-            JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso", "Venda efetuada", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception ex) {
-            Logger.getLogger(TelaRealizarVenda.class.getName()).log(Level.SEVERE, null, ex);
+            //Chama o serviço para realização da venda
+            ServicoVenda.realizarVenda(venda);
+        } catch (Exception e) {
+            //Exibe mensagens de erro para o usuário
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso", "Venda efetuada", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();        
     }//GEN-LAST:event_buttonSelecionarActionPerformed
 
     private void buttonSelecionarItensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarItensActionPerformed

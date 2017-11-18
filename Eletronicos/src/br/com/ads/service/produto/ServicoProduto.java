@@ -11,10 +11,14 @@ import java.util.List;
 public class ServicoProduto {
 
     //Insere um produto na fonte de dados
-    public static void cadastrarProduto(Produto produto) throws ProdutoException, DataSourceException {        
+    public static void cadastrarProduto(Produto produto) throws ProdutoException, DataSourceException, Exception {        
         //Realiza validações no produto
         ValidadorProduto.validar(produto);
-
+        
+        if (MockProduto.obter(produto.getCodigo()) != null) {
+            throw new DataSourceException("Já existe um produto com esse código", new Exception());
+        }
+        
         try {
             //Realiza a chamada de inserção na fonte de dados
             MockProduto.inserir(produto);

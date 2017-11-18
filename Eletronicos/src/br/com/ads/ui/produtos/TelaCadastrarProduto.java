@@ -2,6 +2,7 @@ package br.com.ads.ui.produtos;
 
 import br.com.ads.model.produtos.Produto;
 import br.com.ads.service.produto.ServicoProduto;
+import java.text.NumberFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,7 +37,7 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         fieldQuantidade = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        comboCategoria = new javax.swing.JComboBox<>();
+        comboCategoria = new javax.swing.JComboBox<String>();
         jLabel5 = new javax.swing.JLabel();
         fieldDescricao = new javax.swing.JTextField();
 
@@ -66,13 +67,13 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Marca:");
 
-        jLabel3.setText("Preço:");
+        jLabel3.setText("Preço (BRL):");
 
         jLabel4.setText("Quantidade:");
 
         jLabel6.setText("Categoria:");
 
-        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TVs", "Audio", "SmarthPhone", "Consoles", " ", " ", " " }));
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TVs", "Audio", "SmartPhone", "Consoles", "Computadores" }));
 
         jLabel5.setText("Descrição:");
 
@@ -99,12 +100,13 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(fieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                            .addComponent(fieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fieldMarca)
-                            .addComponent(fieldPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                             .addComponent(fieldDescricao)
-                            .addComponent(fieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(fieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(fieldPreco, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(fieldQuantidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -138,7 +140,7 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(fieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSalvar)
                     .addComponent(buttonFechar))
@@ -165,11 +167,15 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
         produto.setDescrição(fieldDescricao.getText().trim());
         
         try {
-            Float preco = Float.parseFloat(fieldPreco.getText()) ;
-            produto.setPreco(preco);            
+            //converto para o formato de moeda
+            String preco = fieldPreco.getText().trim();
+            if (preco.indexOf("R$") != 0) preco = "R$ " + preco;
+            preco = String.valueOf(NumberFormat.getCurrencyInstance().parse(preco));
+            produto.setPreco(Float.parseFloat(preco));
             Integer quantidade = Integer.parseInt(fieldQuantidade.getText());
             produto.setQuantidade(quantidade);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         
         try {

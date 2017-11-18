@@ -73,7 +73,7 @@ public class MockProduto {
     public static Produto obter(String codigo) throws Exception {
         if (codigo != null && !listaProdutos.isEmpty()) {
             for (int i = 0; i < listaProdutos.size(); i++) {
-                if (listaProdutos.get(i) != null && listaProdutos.get(i).getCodigo()== codigo) {
+                if (listaProdutos.get(i) != null && listaProdutos.get(i).getCodigo().equals(codigo)) {
                     return listaProdutos.get(i);
                 }
             }

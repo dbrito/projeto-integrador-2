@@ -4,6 +4,7 @@ import br.com.ads.exceptions.ProdutoException;
 import br.com.ads.model.produtos.Produto;
 import br.com.ads.service.produto.ServicoProduto;
 import java.awt.Dimension;
+import java.text.NumberFormat;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -45,14 +46,14 @@ public class TelaConsultarProdutos extends javax.swing.JInternalFrame {
 
         //Percorre a lista de resultados e os adiciona na tabela
         for (int i = 0; i < resultado.size(); i++) {
-            Produto cli = resultado.get(i);
-            if (cli != null) {
+            Produto prd = resultado.get(i);
+            if (prd != null) {
                 Object[] row = new Object[5];
-                row[0] = cli.getCodigo();
-                row[1] = cli.getNome();
-                row[2] = cli.getMarca();
-                row[3] = cli.getCategoria();
-                row[4] = String.valueOf(cli.getPreco());                
+                row[0] = prd.getCodigo();
+                row[1] = prd.getNome();
+                row[2] = prd.getMarca();
+                row[3] = prd.getCategoria();
+                row[4] = NumberFormat.getCurrencyInstance().format(prd.getPreco());                
                 model.addRow(row);
             }
         }

@@ -23,16 +23,13 @@ public class MockVenda {
     }
 
     //Procuro as vendas que se encaixam no filtro de data
-    public static List<Venda> procurar(String termo) throws Exception {
+    public static List<Venda> filtrar(Date de, Date ate) throws Exception {
         List<Venda> listaResultado = new ArrayList<Venda>();
 
-        if (termo != null && !listaVendas.isEmpty()) {
+        if (de != null && ate != null && !listaVendas.isEmpty()) {
             for (Venda vendaLi : listaVendas) {
-                if (vendaLi != null) {
-                    //verifico se a venda esta entre o periodo solicitado
-                    //if (vendaLi.getData() >= beginDate && vendaLi.getData <= endDate){
-                        //listaResultado.add(produtoLi);
-                    //}
+                if (vendaLi.getData().before(ate) && vendaLi.getData().after(de)){
+                    listaResultado.add(vendaLi);
                 }
             }
         }

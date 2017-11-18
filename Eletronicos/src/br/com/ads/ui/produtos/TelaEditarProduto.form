@@ -50,11 +50,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="fieldNome" alignment="0" max="32767" attributes="0"/>
-                          <Component id="fieldQuantidade" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="comboCategoria" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="fieldMarca" alignment="0" max="32767" attributes="0"/>
-                          <Component id="fieldPreco" alignment="0" max="32767" attributes="0"/>
                           <Component id="fieldDescricao" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="fieldPreco" alignment="0" max="32767" attributes="0"/>
+                              <Component id="fieldQuantidade" alignment="0" pref="150" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -95,7 +97,7 @@
                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="fieldDescricao" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonFechar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -138,7 +140,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pre&#xe7;o:"/>
+        <Property name="text" type="java.lang.String" value="Pre&#xe7;o (BRL):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fieldPreco">
@@ -158,14 +160,12 @@
     <Component class="javax.swing.JComboBox" name="comboCategoria">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
+          <StringArray count="5">
             <StringItem index="0" value="TVs"/>
             <StringItem index="1" value="Audio"/>
-            <StringItem index="2" value="SmarthPhone"/>
+            <StringItem index="2" value="SmartPhone"/>
             <StringItem index="3" value="Consoles"/>
-            <StringItem index="4" value=" "/>
-            <StringItem index="5" value=" "/>
-            <StringItem index="6" value=" "/>
+            <StringItem index="4" value="Computadores"/>
           </StringArray>
         </Property>
       </Properties>
