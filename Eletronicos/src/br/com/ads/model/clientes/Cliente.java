@@ -20,6 +20,7 @@ public class Cliente {
     private String telefone;
     private String email;
 
+    
     //Métodos de acesso
     public Integer getId() {
         return id;
