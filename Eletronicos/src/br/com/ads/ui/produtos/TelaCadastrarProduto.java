@@ -1,5 +1,6 @@
 package br.com.ads.ui.produtos;
 
+import br.com.ads.DAO.ProdutoDAO;
 import br.com.ads.model.produtos.Produto;
 import br.com.ads.service.produto.ServicoProduto;
 import java.text.NumberFormat;
@@ -160,11 +161,22 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
         //Cria uma instância do produto e obtém
         //seus valores dos campos da tela
         Produto produto = new Produto();
-        produto.setCodigo(fieldCodigo.getText().trim());
-        produto.setNome(fieldNome.getText().trim());
-        produto.setMarca(fieldMarca.getText().trim());
+        ProdutoDAO dao = new ProdutoDAO();
+        
+        produto.setCodigo(fieldCodigo.getText());
+        produto.setNome(fieldNome.getText());
+        produto.setMarca(fieldMarca.getText());
+        produto.setPreco(Integer.parseInt(fieldPreco.getText()));
+        produto.setQuantidade(Integer.parseInt(fieldQuantidade.getText()));
         produto.setCategoria((String) comboCategoria.getSelectedItem());
-        produto.setDescrição(fieldDescricao.getText().trim());
+        produto.setDescrição(fieldDescricao.getText());
+        dao.create(produto);
+        
+//        produto.setCodigo(fieldCodigo.getText().trim());
+//        produto.setNome(fieldNome.getText().trim());
+//        produto.setMarca(fieldMarca.getText().trim());
+//        produto.setCategoria((String) comboCategoria.getSelectedItem());
+//        produto.setDescrição(fieldDescricao.getText().trim());
         
         try {
             //converto para o formato de moeda

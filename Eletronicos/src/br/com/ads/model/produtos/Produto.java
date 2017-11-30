@@ -46,10 +46,6 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
-
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
@@ -69,5 +65,9 @@ public class Produto {
     public void setDescrição(String descricao) {
         this.descricao = descricao;
     }
+    public int getQuantidade() {
+        return quantidade;
+    }
+
    
 }

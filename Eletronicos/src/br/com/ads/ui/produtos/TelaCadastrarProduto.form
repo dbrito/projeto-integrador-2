@@ -51,10 +51,8 @@
                           <Component id="fieldMarca" alignment="0" max="32767" attributes="0"/>
                           <Component id="fieldDescricao" max="32767" attributes="0"/>
                           <Component id="fieldCodigo" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="fieldPreco" alignment="0" max="32767" attributes="0"/>
-                              <Component id="fieldQuantidade" alignment="0" pref="150" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="fieldPreco" alignment="0" max="32767" attributes="0"/>
+                          <Component id="fieldQuantidade" alignment="0" pref="150" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
