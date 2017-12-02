@@ -1,3 +1,4 @@
 *.class
 /Eletronicos/nbproject/private/
 /Eletronicos/build/
+/Eletronicos/dist/

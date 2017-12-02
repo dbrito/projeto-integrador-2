@@ -163,20 +163,14 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
         Produto produto = new Produto();
         ProdutoDAO dao = new ProdutoDAO();
         
-        produto.setCodigo(fieldCodigo.getText());
-        produto.setNome(fieldNome.getText());
-        produto.setMarca(fieldMarca.getText());
+        produto.setCodigo(fieldCodigo.getText().trim());
+        produto.setNome(fieldNome.getText().trim());
+        produto.setMarca(fieldMarca.getText().trim());
         produto.setPreco(Integer.parseInt(fieldPreco.getText()));
         produto.setQuantidade(Integer.parseInt(fieldQuantidade.getText()));
         produto.setCategoria((String) comboCategoria.getSelectedItem());
-        produto.setDescrição(fieldDescricao.getText());
-        dao.create(produto);
-        
-//        produto.setCodigo(fieldCodigo.getText().trim());
-//        produto.setNome(fieldNome.getText().trim());
-//        produto.setMarca(fieldMarca.getText().trim());
-//        produto.setCategoria((String) comboCategoria.getSelectedItem());
-//        produto.setDescrição(fieldDescricao.getText().trim());
+        produto.setDescrição(fieldDescricao.getText().trim());
+        dao.inserir(produto);
         
         try {
             //converto para o formato de moeda

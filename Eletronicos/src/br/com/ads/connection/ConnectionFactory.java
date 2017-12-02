@@ -25,7 +25,7 @@ public class ConnectionFactory {
             throw new RuntimeException("Erro na Conexão! ", ex);
         }
     }
-    
+       // iniciar a conexão com o banco
     public static void closeConnection(Connection con, PreparedStatement stmt){
         
             try {
@@ -37,7 +37,7 @@ public class ConnectionFactory {
             }
         
     }
-    
+        // finalizar a conexão com o banco
      public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs){
          closeConnection(con, stmt);
             try {

@@ -3,6 +3,7 @@ package br.com.ads.model.produtos;
 public class Produto {
 
     //Atributos
+    private int id;
     private String codigo;
     private String nome;
     private String marca;
@@ -13,6 +14,15 @@ public class Produto {
 
     
     //Métodos de acesso
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     public String getCodigo() {
         return codigo;
@@ -68,6 +78,8 @@ public class Produto {
     public int getQuantidade() {
         return quantidade;
     }
+
+    
 
    
 }
