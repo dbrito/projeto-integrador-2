@@ -59,8 +59,8 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         fieldCidade = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        fieldEstado = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        comboEstado = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -99,9 +99,9 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Nome: ");
+        jLabel1.setText("* Nome:");
 
-        jLabel13.setText("CEP");
+        jLabel13.setText("* CEP:");
 
         try {
             fieldDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -109,15 +109,15 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        jLabel5.setText("CPF:");
+        jLabel5.setText("* CPF:");
 
-        jLabel6.setText("Data Nasc");
+        jLabel6.setText("* Data Nasc:");
 
-        jLabel7.setText("Telefone");
+        jLabel7.setText("Telefone:");
 
-        jLabel2.setText("Endereço:");
+        jLabel2.setText("* Endereço:");
 
-        jLabel9.setText("Número");
+        jLabel9.setText("* Número:");
 
         try {
             fieldCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
@@ -131,15 +131,17 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        jLabel10.setText("Complemento");
+        jLabel10.setText("Complemento:");
 
-        jLabel3.setText("Bairro");
+        jLabel3.setText("* Bairro:");
 
-        jLabel11.setText("Cidade");
+        jLabel11.setText("* Cidade:");
 
-        jLabel12.setText("Estado");
+        jLabel12.setText("* Estado:");
 
-        jLabel4.setText("Email");
+        jLabel4.setText("Email:");
+
+        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,20 +152,24 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoSalvar)
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel1))
-                        .addGap(5, 5, 5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(5, 5, 5))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fieldEmail)
                             .addComponent(fieldNome)
@@ -179,24 +185,22 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(fieldComplemento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(fieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(fieldDataNascimento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(fieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(fieldBairro)
                                     .addComponent(fieldCidade))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel12))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addGap(128, 128, 128))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(fieldCep, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -232,8 +236,8 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(fieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel12)
+                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -242,7 +246,7 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(fieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoSalvar)
                     .addComponent(cancelar))
@@ -270,7 +274,7 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
         cliente.setBairro(fieldBairro.getText());        
         cliente.setCep(fieldCep.getText());
         cliente.setCidade(fieldCidade.getText());        
-        cliente.setEstado(fieldEstado.getText());                
+        cliente.setEstado((String) comboEstado.getSelectedItem());                
         cliente.setEmail(fieldEmail.getText());        
         cliente.setTelefone(fieldTelefone.getText());
         
@@ -278,9 +282,7 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
             DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
             Date dt = df.parse(fieldDataNascimento.getText());
             cliente.setDataNascimento(dt);
-        } catch (Exception e) {
-            System.out.print(e);
-        }
+        } catch (Exception e) {}
         
         try {
             //Chama o serviço para realizar as alterações necessárias
@@ -288,8 +290,7 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
         }
         catch(Exception e) {
             //Exibe alguma mensagem de erro que pode ter vindo do serviço
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }        
         
@@ -328,16 +329,23 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
         fieldComplemento.setText(cliente.getComplemento());
         fieldBairro.setText(cliente.getBairro());
         fieldCep.setText(cliente.getCep().toString());
-        fieldCidade.setText(cliente.getCidade());
-        fieldEstado.setText(cliente.getEstado());
+        fieldCidade.setText(cliente.getCidade());                
         fieldTelefone.setText(cliente.getTelefone().toString());
         fieldEmail.setText(cliente.getEmail());
+        
+        for (int i = 0; i < comboEstado.getItemCount(); i++) {
+            if (comboEstado.getItemAt(i).equals(cliente.getEstado())) {
+                comboEstado.setSelectedIndex(i);
+                break;
+            }
+        }
     }//GEN-LAST:event_formInternalFrameOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoSalvar;
     private javax.swing.JButton cancelar;
+    private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JTextField fieldBairro;
     private javax.swing.JFormattedTextField fieldCep;
     private javax.swing.JTextField fieldCidade;
@@ -346,7 +354,6 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField fieldDataNascimento;
     private javax.swing.JTextField fieldEmail;
     private javax.swing.JTextField fieldEndereco;
-    private javax.swing.JTextField fieldEstado;
     private javax.swing.JTextField fieldNome;
     private javax.swing.JTextField fieldNumero;
     private javax.swing.JTextField fieldTelefone;

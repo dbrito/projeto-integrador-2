@@ -52,14 +52,14 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Nome", "CPF"
+                "CPF", "Nome"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -165,15 +165,13 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
             resultSearch = refreshList();
         } catch (Exception e) {
             //Exibe mensagens de erro na fonte de dados e para o listener
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         //Exibe mensagem de erro caso a pesquisa não tenha resultados
         if (!resultSearch) {
-            JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
-                    "Sem resultados", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ", "Sem resultados", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonPesquisarActionPerformed
 
@@ -181,8 +179,7 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
     public boolean refreshList() throws ClienteException, Exception {
         //Realiza a pesquisa de clientes com o último valor de pesquisa
         //para atualizar a lista
-        List<Cliente> resultado = ServicoCliente.
-                procurarCliente(ultimaPesquisa);
+        List<Cliente> resultado = ServicoCliente.procurarCliente(ultimaPesquisa);
 
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tabelaResultados.getModel();
@@ -200,10 +197,9 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
         for (int i = 0; i < resultado.size(); i++) {
             Cliente cli = resultado.get(i);
             if (cli != null) {
-                Object[] row = new Object[3];
-                row[0] = cli.getId();
-                row[1] = cli.getNome();
-                row[2] = cli.getCpf();
+                Object[] row = new Object[2];
+                row[0] = cli.getCpf();
+                row[1] = cli.getNome();                
                 model.addRow(row);
             }
         }
@@ -222,11 +218,8 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
                 //Obtém a linha selecionada da tabela de resultados
                 final int row = tabelaResultados.getSelectedRow();
                 //Obtém o valor do ID da coluna "ID" da tabela de resultados
-                Integer id = (Integer) tabelaResultados.getValueAt(row, 0);
-                
-                //Com o ID da coluna, chama o serviço de cliente para
-                //obter o cliente com dados atualizados do mock
-                Cliente cliente = ServicoCliente.obterCliente(id);
+                String cpf = (String) tabelaResultados.getValueAt(row, 0);                
+                Cliente cliente = ServicoCliente.procurarCliente(cpf).get(0);
 
                 //Cria uma nova instância da tela de edição,
                 //configura o cliente selecionado como elemento a
@@ -245,9 +238,7 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
                 //mas esconde-o do usuário
                 e.printStackTrace();
                 //Exibe uma mensagem de erro genérica ao usuário
-                JOptionPane.showMessageDialog(rootPane, "Não é possível "
-                    + "exibir os detalhes deste cliente.",
-                    "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Não é possível exibir os detalhes deste cliente.", "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_tabelaResultadosMouseClicked
@@ -264,16 +255,15 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
             //de mensagem de confirmação de exclusão utilizando seu nome
             String nome = (String) tabelaResultados.getValueAt(row, 1);
             //Mostra o diálogo de confirmação de exclusão
-            int resposta = JOptionPane.showConfirmDialog(rootPane,
-                "Excluir o cliente \"" + nome + "\"?",
-                "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+            int resposta = JOptionPane.showConfirmDialog(rootPane, "Excluir o cliente \"" + nome + "\"?", "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
             //Se o valor de resposta for "Sim" para a exclusão
             if (resposta == JOptionPane.YES_OPTION) {
                 try {
                     //Obtém o ID do cliente
-                    Integer id = (Integer) tabelaResultados.getValueAt(row, 0);
+                    String cpf = (String) tabelaResultados.getValueAt(row, 0);
                     //Solicita ao serviço a inativação do cliente com o ID
-                    ServicoCliente.excluirCliente(id);
+                    Cliente cliente = ServicoCliente.procurarCliente(cpf).get(0);
+                    ServicoCliente.excluirCliente(cliente.getId());
                     //Atualiza a lista após a "exclusão"
                     this.refreshList();
                 } catch (Exception e) {
@@ -281,8 +271,7 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
                     //mas esconde-o do usuário
                     e.printStackTrace();
                     //Exibe uma mensagem de erro genérica ao usuário
-                    JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                            "Falha na Exclusão", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Falha na Exclusão", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -301,11 +290,8 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
             //Verifica se há linha selecionada na tabela
             if (row >= 0) {
                 //Obtém a linha selecionada na tabela
-                Integer id = (Integer) tabelaResultados.getValueAt(row, 0);
-                
-                //Solicita ao serviço a obtenção do cliente a partir do
-                //ID selecionado na tabela
-                Cliente cliente = ServicoCliente.obterCliente(id);
+                String cpf = (String) tabelaResultados.getValueAt(row, 0);                
+                Cliente cliente = ServicoCliente.procurarCliente(cpf).get(0);
 
                 //Cria uma nova instância da tela de edição,
                 //configura o cliente selecionado como elemento a
@@ -325,9 +311,7 @@ public class TelaConsultarClientes extends javax.swing.JInternalFrame {
             //mas esconde-o do usuário
             e.printStackTrace();
             //Exibe uma mensagem de erro genérica ao usuário
-            JOptionPane.showMessageDialog(rootPane, "Não é possível "
-                + "exibir os detalhes deste cliente.",
-                "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Não é possível exibir os detalhes deste cliente.", "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
