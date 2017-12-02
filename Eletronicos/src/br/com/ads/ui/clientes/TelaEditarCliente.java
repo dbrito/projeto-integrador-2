@@ -282,9 +282,7 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
             DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
             Date dt = df.parse(fieldDataNascimento.getText());
             cliente.setDataNascimento(dt);
-        } catch (Exception e) {
-            System.out.print(e);
-        }
+        } catch (Exception e) {}
         
         try {
             //Chama o serviço para realizar as alterações necessárias
