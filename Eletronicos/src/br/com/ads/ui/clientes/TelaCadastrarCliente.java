@@ -75,7 +75,7 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
 
         jLabel6.setText("* Data Nasc:");
 
-        jLabel7.setText("Telefone:");
+        jLabel7.setText("*Telefone:");
 
         jLabel2.setText("* Endereço:");
 
