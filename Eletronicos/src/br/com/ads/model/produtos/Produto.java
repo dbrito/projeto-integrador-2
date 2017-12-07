@@ -3,7 +3,7 @@ package br.com.ads.model.produtos;
 public class Produto {
 
     //Atributos
-    private int id;
+    private Integer id;
     private String codigo;
     private String nome;
     private String marca;

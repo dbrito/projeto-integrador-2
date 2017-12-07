@@ -53,8 +53,8 @@ public class ProdutoDAO {
             throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando
         //prepared statement
-        String sql = "UPDATE cliente SET nome=?, sobrenome=?, data_nasc=?, sexo=? "
-            + "WHERE (cliente_id=?)";
+        String sql = "UPDATE produto SET codigo=?, nome=?, marca=?, preco=?, quantidade=?, categoria=?, descricao=? "
+            + "WHERE (id=?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de
@@ -93,7 +93,7 @@ public class ProdutoDAO {
      public static void excluir(Integer id) throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando
         //prepared statement
-        String sql = "UPDATE produto SET enabled=? WHERE (cliente_id=?)";
+        String sql = "UPDATE produto SET enabled=? WHERE (id=?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de
@@ -200,7 +200,7 @@ public class ProdutoDAO {
                 }
                 //Cria uma instância de Cliente e popula com os valores do BD
                 Produto produto = new Produto();
-                produto.setId(result.getInt("produto_id"));
+                produto.setId(result.getInt("id"));
                 produto.setCodigo(result.getString("codigo"));
                 produto.setNome(result.getString("nome"));
                 produto.setMarca(result.getString("marca"));
@@ -235,7 +235,7 @@ public class ProdutoDAO {
             throws SQLException, Exception {
         //Compõe uma String de consulta que considera apenas o cliente
         //com o ID informado e que esteja ativo ("enabled" com "true")
-        String sql = "SELECT * FROM produto WHERE (cliente_id=? AND enabled=?)";
+        String sql = "SELECT * FROM produto WHERE (id=? AND enabled=?)";
 
         //Conexão para abertura e fechamento
         Connection connection = null;

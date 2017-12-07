@@ -3,7 +3,7 @@ create database dbEletronicos;
 use dbEletronicos;
 
 CREATE TABLE Cliente (
-id INT NOT NULL,
+id integer auto_increment,
 nome VARCHAR(30),
 cpf int(30),
 dataNascimento date,
@@ -21,8 +21,8 @@ PRIMARY KEY (id)
 
 
 CREATE TABLE Venda (
-id int (30),
-data date,
+id integer (30) auto_increment,
+Data date,
 primary key (id),
 foreign key (id) references Cliente (id)
 
@@ -30,24 +30,26 @@ foreign key (id) references Cliente (id)
 
 
 CREATE TABLE ItemVenda (
-id int not null,
-codigo int not null,
+id integer auto_increment,
 quantidade int (30),
-PRIMARY KEY(id, codigo),
+PRIMARY KEY(id),
 FOREIGN KEY(id) REFERENCES Venda (id),
-FOREIGN KEY(codigo) REFERENCES Produto (codigo)
+FOREIGN KEY(id) REFERENCES Produto (id)
 );
 
 CREATE TABLE Produto (
-codigo INT NOT NULL,
+id integer auto_increment,
+codigo character,
 nome  varchar (30),
 marca VARCHAR(20),
 preco double,
 quantidade int,
 categoria varchar (30) ,
 descricao varchar(30),
-PRIMARY KEY (codigo)
+PRIMARY KEY (id)
 );
+
+drop database dbeletronicos;
 
 
 

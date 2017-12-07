@@ -5,6 +5,7 @@ import br.com.ads.mock.MockCliente;
 import br.com.ads.exceptions.DataSourceException;
 import br.com.ads.model.clientes.Cliente;
 import br.com.ads.model.validador.cliente.ValidadorCliente;
+import br.com.ads.DAO.ClienteDAO;
 import java.util.List;
 
 //Classe de serviço de cliente
@@ -19,7 +20,7 @@ public class ServicoCliente {
 
         try {
             //Realiza a chamada de inserção na fonte de dados
-            MockCliente.inserir(cliente);
+            ClienteDAO.inserir(cliente);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão
@@ -37,7 +38,7 @@ public class ServicoCliente {
 
         try {
             //Realiza a chamada de atualização na fonte de dados
-            MockCliente.atualizar(cliente);
+            ClienteDAO.atualizar(cliente);
             return;
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
@@ -55,9 +56,9 @@ public class ServicoCliente {
             //Caso afirmativo, realiza uma listagem simples do mock.
             //Caso contrário, realiza uma pesquisa com o parâmetro
             if (nome == null || "".equals(nome)) {
-                return MockCliente.listar();
+                return ClienteDAO.listar();
             } else {
-                return MockCliente.procurar(nome);
+                return ClienteDAO.procurar(nome);
             }
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
@@ -72,7 +73,7 @@ public class ServicoCliente {
             throws ClienteException, DataSourceException {
         try {
             //Retorna o cliente obtido com o DAO
-            return MockCliente.obter(id);
+            return ClienteDAO.obter(id);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão
@@ -86,7 +87,7 @@ public class ServicoCliente {
             throws ClienteException, DataSourceException {
         try {
             //Solicita ao DAO a exclusão do cliente informado
-            MockCliente.excluir(id);
+            ClienteDAO.excluir(id);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão
