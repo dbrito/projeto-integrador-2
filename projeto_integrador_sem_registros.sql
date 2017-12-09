@@ -11,10 +11,10 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `projeto_integrador_sem_registros`
+-- Database: `projeto_integrador`
 --
-CREATE DATABASE IF NOT EXISTS `projeto_integrador_sem_registros` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `projeto_integrador_sem_registros`;
+CREATE DATABASE IF NOT EXISTS `projeto_integrador` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `projeto_integrador`;
 
 -- --------------------------------------------------------
 
