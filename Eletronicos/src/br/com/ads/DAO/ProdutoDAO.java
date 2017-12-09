@@ -22,12 +22,13 @@ public class ProdutoDAO {
     
     // inserir no banco de dados
     public static void inserir (Produto produto){
+        System.out.println("caralho");
         Connection con = ConnectionFactory.getConnetion();
         PreparedStatement stmt = null;
         
         try {
             // insert para o banco
-            stmt = con.prepareStatement("INSERT INTO produto ( nome, marca, preco, quantidade, categoria, descricao) VALUES(?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO produto ( codigo, nome, marca, preco, quantidade, categoria, descricao, enabled) VALUES(?,?,?,?,?,?,?,?)");
             // passando os dados para o insert
             stmt.setString(1, produto.getCodigo());
             stmt.setString(2, produto.getNome());
@@ -36,11 +37,8 @@ public class ProdutoDAO {
             stmt.setInt(5, produto.getQuantidade());
             stmt.setString(6, produto.getCategoria());
             stmt.setString(7, produto.getDescricao());
-            
-            stmt.executeUpdate();
-            
-            // mensagens de salvar ou de erro
-            JOptionPane.showMessageDialog(null,"Salvo com Sucesso! ");
+            stmt.setInt(8, 1);            
+            stmt.execute();            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao Salvar! "+ex);
         }finally{
@@ -49,11 +47,11 @@ public class ProdutoDAO {
         
  }
     
-     public static void atualizar(Produto produto)
-            throws SQLException, Exception {
+     public static void atualizar(Produto produto) throws SQLException, Exception {
+        System.out.print("HERE" + produto.getId());
         //Monta a string de atualização do cliente no BD, utilizando
         //prepared statement
-        String sql = "UPDATE produto SET codigo=?, nome=?, marca=?, preco=?, quantidade=?, categoria=?, descricao=? "
+        String sql = "UPDATE produto SET nome=?, marca=?, preco=?, quantidade=?, categoria=?, descricao=? "
             + "WHERE (id=?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
@@ -67,14 +65,13 @@ public class ProdutoDAO {
             //Cria um statement para execução de instruções SQL
             preparedStatement = connection.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
-            preparedStatement.setInt(1, produto.getId());
-            preparedStatement.setString(2, produto.getCodigo());
-            preparedStatement.setString(3, produto.getNome());
-            preparedStatement.setString(4, produto.getMarca());
-            preparedStatement.setDouble(5, produto.getPreco());
-            preparedStatement.setInt(6, produto.getQuantidade());
-            preparedStatement.setString(7, produto.getDescricao());
-            preparedStatement.setString(8, produto.getCategoria());
+            preparedStatement.setString(1, produto.getNome());
+            preparedStatement.setString(2, produto.getMarca());
+            preparedStatement.setDouble(3, produto.getPreco());
+            preparedStatement.setInt(4, produto.getQuantidade());            
+            preparedStatement.setString(5, produto.getCategoria());
+            preparedStatement.setString(6, produto.getDescricao());
+            preparedStatement.setInt(7, produto.getId());
             
             //Executa o comando no banco de dados
             preparedStatement.execute();
@@ -90,10 +87,10 @@ public class ProdutoDAO {
         }
     }
      
-     public static void excluir(Integer id) throws SQLException, Exception {
+     public static void excluir(String codigo) throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando
         //prepared statement
-        String sql = "UPDATE produto SET enabled=? WHERE (id=?)";
+        String sql = "UPDATE produto SET enabled=0 WHERE (codigo=?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de
@@ -105,8 +102,7 @@ public class ProdutoDAO {
             //Cria um statement para execução de instruções SQL
             preparedStatement = connection.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
-            preparedStatement.setBoolean(1, false);
-            preparedStatement.setInt(2, id);
+            preparedStatement.setString(1, codigo);
             
             //Executa o comando no banco de dados
             preparedStatement.execute();
@@ -132,11 +128,11 @@ public class ProdutoDAO {
         List<Produto> produtos = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM Produtos");
+            stmt = con.prepareStatement("SELECT * FROM produto where enabled=1");
             rs = stmt.executeQuery();
             while (rs.next()) {                
                 Produto produto = new Produto();
-                produto.setId(rs.getInt(totalProdutos));
+                produto.setId(rs.getInt("id"));
                 produto.setCodigo(rs.getString("codigo"));
                 produto.setNome(rs.getString("nome"));
                 produto.setMarca(rs.getString("marca"));
@@ -144,6 +140,7 @@ public class ProdutoDAO {
                 produto.setQuantidade(rs.getInt("quantidade"));
                 produto.setCategoria(rs.getString("categoria"));
                 produto.setDescrição(rs.getString("descricao"));
+                produto.setEnabled(rs.getInt("enabled"));
                 produtos.add(produto);
             }
         } catch (SQLException ex) {
@@ -169,7 +166,7 @@ public class ProdutoDAO {
         //que possuem a coluna de ativação de clientes configurada com
         //o valor correto ("enabled" com "true")
         String sql = "SELECT * FROM produto WHERE ((UPPER(nome) LIKE UPPER(?) "
-            + "OR UPPER(produto.nome) LIKE UPPER(?)) AND enabled=?)";
+            + "OR UPPER(codigo) LIKE UPPER(?) OR UPPER(marca) LIKE UPPER(?)) AND enabled=1)";
         //Lista de clientes de resultado
         List<Produto> listaProdutos = null;
         //Conexão para abertura e fechamento
@@ -187,8 +184,7 @@ public class ProdutoDAO {
             //Configura os parâmetros do "PreparedStatement"
             preparedStatement.setString(1, "%" + valor + "%");
             preparedStatement.setString(2, "%" + valor + "%");
-            preparedStatement.setBoolean(3, true);
-            
+            preparedStatement.setString(3, "%" + valor + "%");            
             //Executa a consulta SQL no banco de dados
             result = preparedStatement.executeQuery();
             
@@ -208,6 +204,7 @@ public class ProdutoDAO {
                 produto.setQuantidade(result.getInt("quantidade"));
                 produto.setDescrição(result.getString("descricao"));
                 produto.setCategoria(result.getString("categoria"));
+                produto.setEnabled(result.getInt("enabled"));
                 //Adiciona a instância na lista
                 listaProdutos.add(produto);
             }
@@ -231,11 +228,10 @@ public class ProdutoDAO {
     
      //Obtém uma instância da classe "Cliente" através de dados do
     //banco de dados, de acordo com o ID fornecido como parâmetro
-    public static Produto obter(String codigo)
-            throws SQLException, Exception {
+    public static Produto obter(String codigo) throws SQLException, Exception {
         //Compõe uma String de consulta que considera apenas o cliente
         //com o ID informado e que esteja ativo ("enabled" com "true")
-        String sql = "SELECT * FROM produto WHERE (id=? AND enabled=?)";
+        String sql = "SELECT * FROM produto WHERE (codigo=?)";
 
         //Conexão para abertura e fechamento
         Connection connection = null;
@@ -251,7 +247,6 @@ public class ProdutoDAO {
             preparedStatement = connection.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
             preparedStatement.setString(1, codigo);            
-            preparedStatement.setBoolean(2, true);
             
             //Executa a consulta SQL no banco de dados
             result = preparedStatement.executeQuery();
@@ -260,7 +255,7 @@ public class ProdutoDAO {
             if (result.next()) {                
                 //Cria uma instância de Cliente e popula com os valores do BD
                 Produto produto = new Produto();
-                produto.setId(result.getInt("produto_id"));
+                produto.setId(result.getInt("id"));
                 produto.setNome(result.getString("nome"));
                 produto.setMarca(result.getString("marca"));
                 produto.setCodigo(result.getString("codigo"));
@@ -268,7 +263,7 @@ public class ProdutoDAO {
                 produto.setCategoria(result.getString("categoria"));
                 produto.setQuantidade(result.getInt("quantidade"));
                 produto.setDescrição(result.getString("descricao"));
-                
+                produto.setEnabled(result.getInt("enabled"));                
                 //Retorna o resultado
                 return produto;
             }            

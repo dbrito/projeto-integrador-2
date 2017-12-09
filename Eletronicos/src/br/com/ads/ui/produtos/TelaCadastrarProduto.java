@@ -4,6 +4,7 @@ import br.com.ads.DAO.ProdutoDAO;
 import br.com.ads.model.produtos.Produto;
 import br.com.ads.service.produto.ServicoProduto;
 import java.text.NumberFormat;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 
 /**
@@ -161,22 +162,21 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
         //Cria uma instância do produto e obtém
         //seus valores dos campos da tela
         Produto produto = new Produto();
-        ProdutoDAO dao = new ProdutoDAO();
         
         produto.setCodigo(fieldCodigo.getText().trim());
         produto.setNome(fieldNome.getText().trim());
         produto.setMarca(fieldMarca.getText().trim());
-        produto.setPreco(Integer.parseInt(fieldPreco.getText()));
-        produto.setQuantidade(Integer.parseInt(fieldQuantidade.getText()));
         produto.setCategoria((String) comboCategoria.getSelectedItem());
         produto.setDescrição(fieldDescricao.getText().trim());
-        dao.inserir(produto);
         
         try {
             //converto para o formato de moeda
             String preco = fieldPreco.getText().trim();
             if (preco.indexOf("R$") != 0) preco = "R$ " + preco;
-            preco = String.valueOf(NumberFormat.getCurrencyInstance().parse(preco));
+            
+            Locale meuLocal = new Locale( "pt", "BR" );
+            System.out.print(preco);
+            preco = String.valueOf(NumberFormat.getCurrencyInstance(meuLocal).parse(preco));
             produto.setPreco(Float.parseFloat(preco));
             Integer quantidade = Integer.parseInt(fieldQuantidade.getText());
             produto.setQuantidade(quantidade);
@@ -189,14 +189,12 @@ public class TelaCadastrarProduto extends javax.swing.JInternalFrame {
             ServicoProduto.cadastrarProduto(produto);
         } catch (Exception e) {
             //Exibe mensagens de erro para o usuário
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         //Caso tenha cadastrado exibe a mensagem de sucesso
-        JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso",
-                "Cadastro efetuado", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso", "Cadastro efetuado", JOptionPane.INFORMATION_MESSAGE);
 
         //Limpa os campos da tela após realizar a inserção        
         fieldCodigo.setText("");

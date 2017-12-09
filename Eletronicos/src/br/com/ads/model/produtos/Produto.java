@@ -3,6 +3,7 @@ package br.com.ads.model.produtos;
 public class Produto {
 
     //Atributos
+    private Integer enabled;
     private Integer id;
     private String codigo;
     private String nome;
@@ -23,7 +24,13 @@ public class Produto {
         this.id = id;
     }
     
-
+    public Integer getEnabled() {
+        return enabled;
+    }
+    public void setEnabled(Integer enabled) {
+        this.enabled = enabled;
+    }
+    
     public String getCodigo() {
         return codigo;
     }

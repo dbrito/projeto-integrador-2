@@ -6,6 +6,7 @@ import java.util.Date;
 public class Cliente {
 
     //Atributos
+    private Integer enabled;
     private Integer id;
     private String nome;
     private String cpf;
@@ -26,6 +27,13 @@ public class Cliente {
     }
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+    public Integer getEnabled() {
+        return enabled;
+    }
+    public void setEnabled(Integer enabled) {
+        this.enabled = enabled;
     }
     
     public String getNome() {

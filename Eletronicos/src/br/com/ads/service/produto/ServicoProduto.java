@@ -22,9 +22,6 @@ public class ServicoProduto {
         
         try {
             //Realiza a chamada de inserção na fonte de dados
-            
-           // ProdutoDAO.inserir(produto);
-           
             ProdutoDAO.inserir(produto);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
@@ -88,7 +85,7 @@ public class ServicoProduto {
         try {
             //Solicita ao DAO a exclusão do cliente informado
             
-            ProdutoDAO.excluir(Integer.SIZE);
+            ProdutoDAO.excluir(codigo);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão
