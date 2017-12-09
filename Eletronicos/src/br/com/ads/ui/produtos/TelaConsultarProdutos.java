@@ -131,7 +131,7 @@ public class TelaConsultarProdutos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Códgio", "Nome", "Marca", "Categoria", "Preco"
+                "Código", "Nome", "Marca", "Categoria", "Preco"
             }
         ) {
             Class[] types = new Class [] {

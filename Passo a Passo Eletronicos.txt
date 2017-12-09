@@ -1,0 +1,17 @@
+Ultilização do sistema de eltrônicos
+
+1- Abra o netbeans e o projeto, verifique se o servidor de sua máquina
+está funcionando.
+
+2- Abra o seu banco de dados, no caso o MySQl Workbench.
+	*execute o script que enviamos junto ao projeto.
+	*ps: execute o script passo a passo para não haver erro.
+
+3- No Netbeans, vá em serviços> servidor my sql em localhost...> botão direito>
+conectar.
+
+4- Verifique se conectou, pois o usuário é padrão root, e a senha é vazia.
+Após isso achar o banco "projeto_integrador" e verificar as tabelas.
+
+5- Feito esses passos agora só desfrutar da mágica da tecnologia que facilita
+nossas vidas.
