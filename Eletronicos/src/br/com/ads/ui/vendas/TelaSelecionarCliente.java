@@ -54,14 +54,14 @@ public class TelaSelecionarCliente extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Nome", "CPF"
+                "CPF", "Nome"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -159,8 +159,7 @@ public class TelaSelecionarCliente extends javax.swing.JInternalFrame {
 
         //Exibe mensagem de erro caso a pesquisa não tenha resultados
         if (!resultSearch) {
-            JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
-                    "Sem resultados", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ", "Sem resultados", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonPesquisarActionPerformed
 
@@ -169,7 +168,6 @@ public class TelaSelecionarCliente extends javax.swing.JInternalFrame {
         //Realiza a pesquisa de clientes com o último valor de pesquisa
         //para atualizar a lista
         List<Cliente> resultado = ServicoCliente.procurarCliente(ultimaPesquisa);
-
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tabelaResultados.getModel();
         //Indica que a tabela deve excluir todos seus elementos
@@ -186,10 +184,9 @@ public class TelaSelecionarCliente extends javax.swing.JInternalFrame {
         for (int i = 0; i < resultado.size(); i++) {
             Cliente cli = resultado.get(i);
             if (cli != null) {
-                Object[] row = new Object[3];
-                row[0] = cli.getId();
-                row[1] = cli.getNome();
-                row[2] = cli.getCpf();
+                Object[] row = new Object[2];
+                row[0] = cli.getCpf();
+                row[1] = cli.getNome();                
                 model.addRow(row);
             }
         }
@@ -213,8 +210,8 @@ public class TelaSelecionarCliente extends javax.swing.JInternalFrame {
             //Verifica se há linha selecionada na tabela
             if (row >= 0) {
                 //Obtém a linha selecionada na tabela
-                Integer id = (Integer) tabelaResultados.getValueAt(row, 0);
-                Cliente cliente = ServicoCliente.obterCliente(id);
+                String cpf = (String) tabelaResultados.getValueAt(row, 0);
+                Cliente cliente = ServicoCliente.procurarCliente(cpf).get(0);
                 
                 if (this.getDesktopPane().getTopLevelAncestor() instanceof TelaPrincipal) {
                     TelaPrincipal principal = (TelaPrincipal) this.getDesktopPane().getTopLevelAncestor();

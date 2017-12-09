@@ -36,25 +36,24 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
             DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             de = format.parse (fieldDataDe.getText());
             ate = format.parse (fieldDataAte.getText());
-        } catch (Exception e) {
-            System.out.print(e);
-        }
+        } catch (Exception e) {}
 
         //Realiza a pesquisa de produtos com o último valor de pesquisa
         //para atualizar a lista
         List<Venda> resultado = null;
-        if (de == null || ate == null) {
+        if (de == null || ate == null) {            
             resultado = ServicoVenda.listarVendas();
-        } else {
+        } else {  
+            if (de.getTime() > ate.getTime()) {
+                JOptionPane.showMessageDialog(rootPane, "Datas inválidas", "Erro", JOptionPane.ERROR_MESSAGE);
+                txtRelatorio.setText("");
+                return true;
+            }
+            
             resultado = ServicoVenda.filtrarVendas(de, ate);
         }   
         
-
-        //Obtém o elemento representante do conteúdo da tabela na tela
-        DefaultTableModel model = (DefaultTableModel) tabelaResultados.getModel();
-        //Indica que a tabela deve excluir todos seus elementos
-        //Isto limpará a lista, mesmo que a pesquisa não tenha sucesso
-        model.setRowCount(0);
+        txtRelatorio.setText("");
 
         //Verifica se não existiram resultados. Caso afirmativo, encerra a
         //atualização e indica ao elemento acionador o não sucesso da pesquisa
@@ -63,18 +62,25 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
         }
 
         //Percorre a lista de resultados e os adiciona na tabela
+        String relatorioVendas = "";
         for (int i = 0; i < resultado.size(); i++) {
             Venda venda = resultado.get(i);
             if (venda != null) {
-                Object[] row = new Object[3];
                 DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
-                row[0] = df.format(venda.getData());
-                row[1] = venda.getCliente().getNome();
-                row[2] = String.valueOf(NumberFormat.getCurrencyInstance().format(venda.getTotal()));                
-                model.addRow(row);
+                relatorioVendas += (String) df.format(venda.getData()) + "\t" + venda.getCliente().getNome() + 
+                        "\t TOTAL: " + String.valueOf(NumberFormat.getCurrencyInstance().format(venda.getTotal())) + "\n";
+                
+                for (ItemVenda item : venda.getItens()) {
+                    Produto prd = item.getProduto();
+                    String precoItem = NumberFormat.getCurrencyInstance().format(prd.getPreco());
+                    relatorioVendas += "\t" + prd.getNome() + " ---> " + precoItem + " ---> x" + item.getQuantidade() + "\n";
+                }
+                relatorioVendas += "-----------------------------\n";
             }
         }
-
+        
+        txtRelatorio.setText(relatorioVendas);
+        
         //Se chegamos até aqui, a pesquisa teve sucesso, então
         //retornamos "true" para o elemento acionante, indicando
         //que não devem ser exibidas mensagens de erro
@@ -88,14 +94,14 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        scrollTabelaResultados = new javax.swing.JScrollPane();
-        tabelaResultados = new javax.swing.JTable();
         buttonFechar = new javax.swing.JButton();
         buttonPesquisar = new javax.swing.JButton();
         fieldDataDe = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         fieldDataAte = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtRelatorio = new javax.swing.JTextArea();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -103,32 +109,6 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Relatório de Vendas");
-
-        tabelaResultados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Data", "Cliente", "Valor"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tabelaResultados.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        scrollTabelaResultados.setViewportView(tabelaResultados);
 
         buttonFechar.setText("Fechar");
         buttonFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +140,11 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        txtRelatorio.setEditable(false);
+        txtRelatorio.setColumns(20);
+        txtRelatorio.setRows(5);
+        jScrollPane1.setViewportView(txtRelatorio);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,20 +152,20 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(fieldDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fieldDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                         .addComponent(buttonPesquisar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonFechar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scrollTabelaResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -189,15 +174,16 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(buttonPesquisar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(fieldDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(fieldDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(fieldDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(fieldDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(scrollTabelaResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(buttonFechar)
                 .addContainerGap())
         );
@@ -243,7 +229,7 @@ public class TelaRelatorioVendas extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField fieldDataDe;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane scrollTabelaResultados;
-    private javax.swing.JTable tabelaResultados;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtRelatorio;
     // End of variables declaration//GEN-END:variables
 }

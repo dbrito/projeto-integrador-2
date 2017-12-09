@@ -221,7 +221,7 @@ public class TelaRealizarVenda extends javax.swing.JInternalFrame {
                 Produto prd = item.getProduto();
                 Object[] row = new Object[3];
                 row[0] = prd.getNome();
-                row[1] = NumberFormat.getCurrencyInstance().format(prd.getPreco());
+                row[1] = NumberFormat.getCurrencyInstance().format(prd.getPreco() * item.getQuantidade());
                 row[2] = item.getQuantidade();
                 model.addRow(row);
                 total += prd.getPreco() * item.getQuantidade();

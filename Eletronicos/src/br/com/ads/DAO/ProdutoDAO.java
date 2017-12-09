@@ -22,7 +22,6 @@ public class ProdutoDAO {
     
     // inserir no banco de dados
     public static void inserir (Produto produto){
-        System.out.println("caralho");
         Connection con = ConnectionFactory.getConnetion();
         PreparedStatement stmt = null;
         
@@ -47,8 +46,7 @@ public class ProdutoDAO {
         
  }
     
-     public static void atualizar(Produto produto) throws SQLException, Exception {
-        System.out.print("HERE" + produto.getId());
+    public static void atualizar(Produto produto) throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando
         //prepared statement
         String sql = "UPDATE produto SET nome=?, marca=?, preco=?, quantidade=?, categoria=?, descricao=? "
@@ -87,7 +85,7 @@ public class ProdutoDAO {
         }
     }
      
-     public static void excluir(String codigo) throws SQLException, Exception {
+    public static void excluir(String codigo) throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando
         //prepared statement
         String sql = "UPDATE produto SET enabled=0 WHERE (codigo=?)";
@@ -118,7 +116,6 @@ public class ProdutoDAO {
         }
     }
      
-    
     // listar os produtos
     public static List <Produto>  listar (){
         Connection con = ConnectionFactory.getConnetion();
@@ -156,8 +153,7 @@ public class ProdutoDAO {
     
     //Procura um cliente no banco de dados, de acordo com o nome
     //ou com o sobrenome, passado como parâmetro
-    public static List<Produto> procurar(String valor)
-            throws SQLException, Exception {
+    public static List<Produto> procurar(String valor) throws SQLException, Exception {
         //Monta a string de consulta de clientes no banco, utilizando
         //o valor passado como parâmetro para busca nas colunas de
         //nome ou sobrenome (através do "LIKE" e ignorando minúsculas
@@ -226,7 +222,7 @@ public class ProdutoDAO {
         return listaProdutos;        
     }
     
-     //Obtém uma instância da classe "Cliente" através de dados do
+    //Obtém uma instância da classe "Cliente" através de dados do
     //banco de dados, de acordo com o ID fornecido como parâmetro
     public static Produto obter(String codigo) throws SQLException, Exception {
         //Compõe uma String de consulta que considera apenas o cliente
@@ -247,6 +243,66 @@ public class ProdutoDAO {
             preparedStatement = connection.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
             preparedStatement.setString(1, codigo);            
+            
+            //Executa a consulta SQL no banco de dados
+            result = preparedStatement.executeQuery();
+            
+            //Verifica se há pelo menos um resultado
+            if (result.next()) {                
+                //Cria uma instância de Cliente e popula com os valores do BD
+                Produto produto = new Produto();
+                produto.setId(result.getInt("id"));
+                produto.setNome(result.getString("nome"));
+                produto.setMarca(result.getString("marca"));
+                produto.setCodigo(result.getString("codigo"));
+                produto.setPreco(result.getDouble("preco"));
+                produto.setCategoria(result.getString("categoria"));
+                produto.setQuantidade(result.getInt("quantidade"));
+                produto.setDescrição(result.getString("descricao"));
+                produto.setEnabled(result.getInt("enabled"));                
+                //Retorna o resultado
+                return produto;
+            }            
+        } finally {
+            //Se o result ainda estiver aberto, realiza seu fechamento
+            if (result != null && !result.isClosed()) {
+                result.close();
+            }
+            //Se o statement ainda estiver aberto, realiza seu fechamento
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            //Se a conexão ainda estiver aberta, realiza seu fechamento
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+
+        //Se chegamos aqui, o "return" anterior não foi executado porque
+        //a pesquisa não teve resultados
+        //Neste caso, não há um elemento a retornar, então retornamos "null"
+        return null;
+    }
+    
+    public static Produto obter(int id) throws SQLException, Exception {
+        //Compõe uma String de consulta que considera apenas o cliente
+        //com o ID informado e que esteja ativo ("enabled" com "true")
+        String sql = "SELECT * FROM produto WHERE (id=?)";
+
+        //Conexão para abertura e fechamento
+        Connection connection = null;
+        //Statement para obtenção através da conexão, execução de
+        //comandos SQL e fechamentos
+        PreparedStatement preparedStatement = null;
+        //Armazenará os resultados do banco de dados
+        ResultSet result = null;
+        try {
+            //Abre uma conexão com o banco de dados
+            connection = ConnectionFactory.getConnetion();
+            //Cria um statement para execução de instruções SQL
+            preparedStatement = connection.prepareStatement(sql);
+            //Configura os parâmetros do "PreparedStatement"
+            preparedStatement.setInt(1, id);            
             
             //Executa a consulta SQL no banco de dados
             result = preparedStatement.executeQuery();

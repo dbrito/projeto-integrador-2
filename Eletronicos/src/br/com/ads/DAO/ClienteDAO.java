@@ -291,7 +291,7 @@ public class ClienteDAO {
             throws SQLException, Exception {
         //Compõe uma String de consulta que considera apenas o cliente
         //com o ID informado e que esteja ativo ("enabled" com "true")
-        String sql = "SELECT * FROM cliente WHERE (id=? AND enabled=?)";
+        String sql = "SELECT * FROM cliente WHERE (id=?)";
 
         //Conexão para abertura e fechamento
         Connection connection = null;
@@ -307,7 +307,6 @@ public class ClienteDAO {
             preparedStatement = connection.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
             preparedStatement.setInt(1, id);            
-            preparedStatement.setBoolean(2, true);
             
             //Executa a consulta SQL no banco de dados
             result = preparedStatement.executeQuery();
@@ -319,7 +318,7 @@ public class ClienteDAO {
                 cliente.setId(result.getInt("id"));
                 cliente.setNome(result.getString("nome"));
                 cliente.setCpf(result.getString("cpf"));
-                Date d = new Date(result.getTimestamp("dataNascimento").getTime());
+                Date d = new Date(result.getTimestamp("data_nascimento").getTime());
                 cliente.setDataNascimento(d);
                 
                 //Retorna o resultado

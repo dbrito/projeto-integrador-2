@@ -5,6 +5,7 @@
  */
 package br.com.ads.service.venda;
 
+import br.com.ads.DAO.VendaDAO;
 import br.com.ads.exceptions.DataSourceException;
 import br.com.ads.exceptions.VendaException;
 import br.com.ads.mock.MockVenda;
@@ -22,7 +23,8 @@ public class ServicoVenda {
     public static void realizarVenda(Venda venda) throws VendaException, DataSourceException {        
         ValidadorVenda.validar(venda);
         try {
-            MockVenda.inserir(venda);
+            //MockVenda.inserir(venda);
+            VendaDAO.criar(venda);
         } catch (Exception e) {
             e.printStackTrace();
             throw new DataSourceException("Erro na fonte de dados", e);
@@ -31,11 +33,11 @@ public class ServicoVenda {
     
     //Busca todas as vendas realizadas
     public static List<Venda> listarVendas() throws Exception {        
-        return MockVenda.listar();        
+        return VendaDAO.pegaRelatório();        
     }
     
     //Busca todas as vendas realizadas
     public static List<Venda> filtrarVendas(Date de, Date ate) throws Exception {        
-        return MockVenda.filtrar(de, ate);        
+        return VendaDAO.pegaRelatório(de, ate);        
     }
 }

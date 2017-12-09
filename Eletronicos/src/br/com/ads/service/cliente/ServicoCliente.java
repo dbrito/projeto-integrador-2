@@ -49,13 +49,12 @@ public class ServicoCliente {
     }
 
     //Realiza a pesquisa de um cliente por nome na fonte de dados
-    public static List<Cliente> procurarCliente(String nome)
-            throws ClienteException, DataSourceException {
+    public static List<Cliente> procurarCliente(String nome) throws ClienteException, DataSourceException {
         try {
             //Verifica se um parâmetro de pesquisa não foi informado.
             //Caso afirmativo, realiza uma listagem simples do mock.
             //Caso contrário, realiza uma pesquisa com o parâmetro
-            if (nome == null || "".equals(nome)) {
+            if (nome == null || "".equals(nome.trim())) {
                 return ClienteDAO.listar();
             } else {
                 return ClienteDAO.procurar(nome);
@@ -69,8 +68,7 @@ public class ServicoCliente {
     }
 
     //Obtem o cliente com ID informado do mock
-    public static Cliente obterCliente(Integer id)
-            throws ClienteException, DataSourceException {
+    public static Cliente obterCliente(Integer id) throws ClienteException, DataSourceException {
         try {
             //Retorna o cliente obtido com o DAO
             return ClienteDAO.obter(id);

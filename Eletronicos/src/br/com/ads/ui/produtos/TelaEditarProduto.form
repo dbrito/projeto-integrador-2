@@ -53,10 +53,8 @@
                           <Component id="comboCategoria" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="fieldMarca" alignment="0" max="32767" attributes="0"/>
                           <Component id="fieldDescricao" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="fieldPreco" alignment="0" max="32767" attributes="0"/>
-                              <Component id="fieldQuantidade" alignment="0" pref="150" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="fieldPreco" alignment="0" max="32767" attributes="0"/>
+                          <Component id="fieldQuantidade" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -160,12 +158,18 @@
     <Component class="javax.swing.JComboBox" name="comboCategoria">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="TVs"/>
-            <StringItem index="1" value="Audio"/>
-            <StringItem index="2" value="SmartPhone"/>
-            <StringItem index="3" value="Consoles"/>
-            <StringItem index="4" value="Computadores"/>
+          <StringArray count="11">
+            <StringItem index="0" value="Celular "/>
+            <StringItem index="1" value="Tablet"/>
+            <StringItem index="2" value="Notebook"/>
+            <StringItem index="3" value="TVs"/>
+            <StringItem index="4" value="Acess&#xf3;rios de Celular"/>
+            <StringItem index="5" value="Impressoras "/>
+            <StringItem index="6" value="Fones de Ouvido"/>
+            <StringItem index="7" value="Caixas de Som"/>
+            <StringItem index="8" value="SoundBar"/>
+            <StringItem index="9" value="HomeTheater"/>
+            <StringItem index="10" value="SmartWatch"/>
           </StringArray>
         </Property>
       </Properties>

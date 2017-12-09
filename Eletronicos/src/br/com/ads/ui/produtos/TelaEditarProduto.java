@@ -96,7 +96,7 @@ public class TelaEditarProduto extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Categoria:");
 
-        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TVs", "Audio", "SmartPhone", "Consoles", "Computadores" }));
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Celular ", "Tablet", "Notebook", "TVs", "Acessórios de Celular", "Impressoras ", "Fones de Ouvido", "Caixas de Som", "SoundBar", "HomeTheater", "SmartWatch" }));
 
         jLabel5.setText("Descrição:");
 
@@ -125,9 +125,8 @@ public class TelaEditarProduto extends javax.swing.JInternalFrame {
                             .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fieldMarca)
                             .addComponent(fieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(fieldPreco, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(fieldQuantidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))))
+                            .addComponent(fieldPreco)
+                            .addComponent(fieldQuantidade))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

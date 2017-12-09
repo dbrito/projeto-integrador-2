@@ -47,7 +47,7 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
         fieldDataNascimento = new javax.swing.JFormattedTextField();
         fieldCep = new javax.swing.JFormattedTextField();
         fieldCpf = new javax.swing.JFormattedTextField();
-        comboEstado = new javax.swing.JComboBox<>();
+        comboEstado = new javax.swing.JComboBox<String>();
 
         setClosable(true);
         setIconifiable(true);
@@ -75,7 +75,7 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
 
         jLabel6.setText("* Data Nasc:");
 
-        jLabel7.setText("*Telefone:");
+        jLabel7.setText("Telefone:");
 
         jLabel2.setText("* Endereço:");
 
@@ -111,7 +111,7 @@ public class TelaCadastrarCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        comboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

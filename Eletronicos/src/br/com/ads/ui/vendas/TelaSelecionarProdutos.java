@@ -145,7 +145,7 @@ public class TelaSelecionarProdutos extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollTabelaResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(scrollTabelaResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelPesquisarQuarto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -188,11 +188,18 @@ public class TelaSelecionarProdutos extends javax.swing.JInternalFrame {
             if (this.getDesktopPane().getTopLevelAncestor() instanceof TelaPrincipal) {
                 TelaPrincipal principal = (TelaPrincipal) this.getDesktopPane().getTopLevelAncestor();
                 if (principal != null) {                    
-                    int[] meuk = tabelaResultados.getSelectedRows();
-                    for (int i : meuk) {
+                    int[] linhasSelecionadas = tabelaResultados.getSelectedRows();
+                    for (int i : linhasSelecionadas) {
+                        Produto prdVenda = ServicoProduto.obterProduto((String)tabelaResultados.getValueAt(i, 0));
+                        int qtd = (Integer)tabelaResultados.getValueAt(i, 5);
+                        if (qtd > prdVenda.getQuantidade()) {
+                            JOptionPane.showMessageDialog(rootPane, "Não temos " + qtd + " unidade(s) do " + prdVenda.getNome() + " em estoque.", "Produto indisponível", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                        
                         ItemVenda item = new ItemVenda();                                                                        
-                        item.setProduto(ServicoProduto.obterProduto((String)tabelaResultados.getValueAt(i, 0)));
-                        item.setQuantidade((Integer)tabelaResultados.getValueAt(i, 5));                        
+                        item.setProduto(prdVenda);
+                        item.setQuantidade(qtd);                        
                         principal.getRealizaVenda().adicionaItem(item);
                         this.dispose();
                     }                                                                                
