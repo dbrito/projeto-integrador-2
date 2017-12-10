@@ -10,8 +10,10 @@ está funcionando.
 3- No Netbeans, vá em serviços> servidor my sql em localhost...> botão direito>
 conectar.
 
-4- Verifique se conectou, pois o usuário é padrão root, e a senha é vazia.
+4 - Alterar o usuario e a senha no arquivo \src\br\com\ads\connection\ConnectionFactory.java
+
+5- Verifique se conectou, pois o usuário é padrão root, e a senha é vazia.
 Após isso achar o banco "projeto_integrador" e verificar as tabelas.
 
-5- Feito esses passos agora só desfrutar da mágica da tecnologia que facilita
+6- Feito esses passos agora só desfrutar da mágica da tecnologia que facilita
 nossas vidas.
