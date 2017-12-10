@@ -92,6 +92,8 @@ public class TelaEditarProduto extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Preço (BRL):");
 
+        fieldPreco.setEditable(false);
+
         jLabel4.setText("Quantidade:");
 
         jLabel6.setText("Categoria:");
